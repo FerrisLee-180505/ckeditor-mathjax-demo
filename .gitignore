@@ -34,3 +34,5 @@ yarn-error.log*
 .vscode
 .cache-loade
 .history
+
+src/export/lib/
