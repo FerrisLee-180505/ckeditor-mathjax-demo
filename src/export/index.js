@@ -1,3 +1,3 @@
-import EgComponent from './component'
+import RichInputWrapper from './rich-input'
 
-export default EgComponent
+export default RichInputWrapper
