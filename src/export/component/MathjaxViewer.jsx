@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import WithMathjaxDisplayed from './WithMathjaxDisplayed'
+import WithMathjaxDisplayed from './../hoc/WithMathjaxDisplayed'
 
 class MathjaxViewer extends Component {
   render() {

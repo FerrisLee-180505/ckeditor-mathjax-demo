@@ -1,3 +1,3 @@
-import RichInputWrapper from './rich-input'
+import RichInput from './component/RichInput'
 
-export default RichInputWrapper
+export default RichInput

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import refreshMathjax from './../utils/MathjaxUtils'
+import refreshMathjax from '../utils/MathjaxUtils'
 
 const WithMathjaxDisplayed = (EnhanceComponent) => {
   return class EnhancedMessage extends Component {
