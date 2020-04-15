@@ -3,10 +3,7 @@ import { noop } from 'lodash'
 import CKEditor from 'ckeditor4-react'
 import WithMathjaxDisplayed from '../hoc/WithMathjaxDisplayed'
 
-// ckeditor4-react default to load cdn resource, so I changed to load local resources
-// ** I refactored the mathjax plugin for better formula editing interactions **
-// If you want the initial experience, comment out this line of code and remove the folder /public/lib/ckeditor4
-// CKEditor.editorUrl = '/lib/ckeditor4/ckeditor.js'
+
 class RichInput extends Component {
   constructor(props) {
     super(props)
@@ -14,7 +11,11 @@ class RichInput extends Component {
   }
 
   render() {
-    const { text, mentions, handleTextChange, width, height } = this.props
+    const { text, mentions, handleTextChange, width, height, useKityformula } = this.props
+    // ckeditor4-react default to load cdn resource, so I changed to load local resources
+    // ** I refactored the mathjax plugin for better formula editing interactions **
+    // If you want the initial experience, comment out this line of code and remove the folder /public/lib/ckeditor4
+    useKityformula && (CKEditor.editorUrl = '/lib/ckeditor4/ckeditor.js')
     return (
       <CKEditor
         data={text}
@@ -48,6 +49,7 @@ RichInput.defaultProps = {
   text: '',
   mentions: [],
   height: 300,
+  useKityformula: true,
   width: 'auto',
   handleTextChange: noop
 }

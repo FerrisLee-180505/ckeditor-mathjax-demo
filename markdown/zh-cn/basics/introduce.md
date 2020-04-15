@@ -6,7 +6,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      text: 'This is a <strong>math</strong> equation:<span class="math-tex">\\(\\left ( {x+a} \\right )^{2}=\\sum \\limits^{n}_{k=0} {\\left ( {^{n}_{k}} \\right ){x}^{k}{a}^{n-k}}\\)</span> and I like it.'
+      text: ''
     }
     this.handleTextChange = this.handleTextChange.bind(this)
   }
@@ -58,6 +58,7 @@ export default class App extends React.Component {
         <RichInput
           text={text}
           height={300}
+          useKityformula
           mentions={nextMentions}
           handleTextChange={this.handleTextChange}
         />
@@ -80,4 +81,5 @@ export default class App extends React.Component {
 | width            | Number\|String | 'auto'  | width of Component                                                            |
 | height           | Number\|String | 300     | height of Component                                                           |
 | mentions         | Any[]          | []      | [Doc Link](https://ckeditor.com/docs/ckeditor4/latest/examples/mentions.html) |
+| useKityformula   | Boolean        | true    | enable kityformula mathjax editor                                             |
 
