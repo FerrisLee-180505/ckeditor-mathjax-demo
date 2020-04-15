@@ -1,12 +1,14 @@
 {
-	"name": "ckeditor-mathjax-demo",
-	"version": "1.0.0",
-	"main": "dist/ckeditor-mathjax-demo.common",
+	"name": "ferris-rich-input",
+	"version": "0.0.1",
+	"main": "dist/index.common",
 	"files": [
-		"dist/**/*.*"
-	],
+    "dist/**/*.*",
+    "docs/**/*.*",
+    "package.json"
+  ],
 	"scripts": {
-		"build": "gms build --target=lib --excludeReact --entry=src/export/index --formats=commonjs",
+		"build": "gms build --target=lib --excludeReact --name=index --entry=src/export/index --formats=commonjs",
 		"build:doc": "gms build:doc",
 		"cache:clean": "rimraf node_modules/.cache",
 		"dev:doc": "gms dev:doc",
