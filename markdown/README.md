@@ -1,64 +1,85 @@
-# Gem-Mine-Doc
+```jsx
+/* react live */
+  
+<script>
+export default class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      text: ''
+    }
+    this.handleTextChange = this.handleTextChange.bind(this)
+  }
 
-## 概述
+  /**
+   * function callback on value changeed
+   * @param {string} nextText new value of CKEditor
+   */
+  handleTextChange(nextText) {
+    this.setState({
+      text: nextText
+    })
+  }
 
-这是一个基于 [docsify](https://docsify.js.org/#/) 的文档编辑系统
+  dataFeed(opts, callback) {
+    const matchProperty = 'username'
+    let data = mentions.filter(function (item) {
+      return item[matchProperty].indexOf(opts.query.toLowerCase()) == 0
+    })
+    data = data.sort(function (a, b) {
+      return a[matchProperty].localeCompare(b[matchProperty], undefined, {
+        sensitivity: 'accent'
+      })
+    })
+    callback(data)
+  }
 
-特性
-- 无需构建，写完文档直接发布
-- 基于Markdown语法
-- 容易使用并且轻量 (~19kB gzipped)
-- 智能的全文搜索
-- 提供多套主题
-- 丰富的 API
-- 支持 Emoji
-- 兼容 IE10+
-- 支持 SSR
-
-在它的基础上
-
-- 支持了`React`代码的实时预览和编辑功能
-- Toc和搜索样式优化
-- 加入构建系统
-
-## 安装
-
-本文档系统依赖 `@gem-mine/cli` 生成，请先安装 `@gem-mine/cli`
-
-```shell
-npm i @gem-mine/cli -g // 安装 gmc
-gms create:doc // 为项目生成文档, 默认生成在当前项目的`docs`目录下
+  render() {
+    const { text } = this.state
+    const nextMentions = [{
+      feed: this.dataFeed,
+      itemTemplate: `<li data-id="{id}">
+        <img style="display: inline-block; vertical-align: middle; height: 30px; border-radius: 50%;" src="https://ckeditor.com/docs/ckeditor4/latest/examples/assets/mentions/img/{avatar}.jpg" /> 
+        <strong class="username">{username}</strong>
+        <span class="fullname">{fullname}</span>
+      </li>`,
+      outputTemplate: '<a href="mailto:{username}@example.com">@{username}</a><span>&nbsp;</span>',
+      minChars: 0
+    },
+    {
+      feed: topics,
+      marker: '#',
+      itemTemplate: '<li data-id="{id}"><strong>{name}</strong></li>',
+      outputTemplate: `<a href="https://example.com/social?tag={name}">{name}</a a><span>&nbsp;</span>`,
+      minChars: 1
+    }]
+    return (
+      <React.Fragment>
+        <RichInput
+          text={text}
+          height={300}
+          useKityformula
+          mentions={nextMentions}
+          handleTextChange={this.handleTextChange}
+        />
+        <h4>The value in CKEditor:</h4>
+        <p>{`${text}`}</p>
+        <h4>The result of display:</h4>
+        <MathjaxViewer text={text} />
+      </React.Fragment>
+    )
+  }
+}
+</script>
 ```
+### Props
 
-## 指令
+| Field            | Type           | Default | Remarks                                                                       |
+| ---------------- | -------------- | ------- | ----------------------------------------------------------------------------- |
+| text             | String         | ''      | value of CKEditor                                                             |
+| handleTextChange | Function       | noop    | callback on value changed                                                     |
+| width            | Number\|String | 'auto'  | width of Component                                                            |
+| height           | Number\|String | 300     | height of Component                                                           |
+| mentions         | Any[]          | []      | [Doc Link](https://ckeditor.com/docs/ckeditor4/latest/examples/mentions.html) |
+| useKityformula   | Boolean        | true    | enable kityformula mathjax editor                                             |
 
-```shell
-npm run dev:doc // 开发预览
-npm run build:doc // 输出文档，输出目录为`docs`
-```
-
-## 文档编写
-
-`markdown`目录即为`docsify`的根目录，请根据官方文档编写`markdown`文件
-
-请参考[官方文档](https://docsify.js.org/#/zh-cn/)
-
-## 文档配置入口
-
-入口为`markdown/config.js`
-
-```js
-import mergeDefault from '@gem-mine/cli-plugin-doc/docsify/defaults'
-
-// 如果需要在文档站中渲染您的组件库，请引用并且挂载组件库到全局对象
-// import App from '../src/App'
-
-// window.AppDemo = App
-
-// docsify配置
-window.$docsify = mergeDefault({
-  name: '我的文档',
-  repo: 'https://github.com',
-  plugins: []
-})
-```

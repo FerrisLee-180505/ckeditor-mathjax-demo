@@ -3,10 +3,10 @@
 	"version": "0.0.1",
 	"main": "dist/index.common",
 	"files": [
-    "dist/**/*.*",
-    "docs/**/*.*",
-    "package.json"
-  ],
+		"dist/**/*.*",
+		"docs/**/*.*",
+		"package.json"
+	],
 	"scripts": {
 		"build": "gms build --target=lib --excludeReact --name=index --entry=src/export/index --formats=commonjs",
 		"build:doc": "gms build:doc",
