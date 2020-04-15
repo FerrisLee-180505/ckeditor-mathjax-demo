@@ -1,0 +1,24 @@
+.markdown-section pre[v-pre],pre[v-pre]>code {color: #bfc7d5;
+background-color: #292d3e}
+.token.comment {color: rgb(105, 112, 152) ;
+font-style: italic }
+.token.string {color: rgb(195, 232, 141) }
+.token.number {color: rgb(247, 140, 108) }
+.token.builtin {color: rgb(130, 170, 255) }
+.token.char {color: rgb(130, 170, 255) }
+.token.constant {color: rgb(130, 170, 255) }
+.token.function {color: rgb(130, 170, 255) }
+.token.punctuation {color: rgb(199, 146, 234) }
+.token.selector {color: rgb(199, 146, 234) }
+.token.variable {color: rgb(191, 199, 213) }
+.token.class-name {color: rgb(255, 203, 107) }
+.token.attr-name {color: rgb(255, 203, 107) }
+.token.tag {color: rgb(255, 85, 114) }
+.token.operator {color: rgb(137, 221, 255) }
+.token.boolean {color: rgb(255, 88, 116) }
+.token.keyword {font-style: italic ;
+color: #ef3b7d }
+.token.doctype {color: rgb(199, 146, 234) ;
+font-style: italic }
+.token.namespace {color: rgb(178, 204, 214) }
+.token.url {color: rgb(221, 221, 221) }

@@ -1,0 +1,79 @@
+@import url("./font.css");
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: none;
+  -webkit-touch-callout: none;
+  box-sizing: border-box
+}
+
+/* 自定义pre主题需要 */
+pre:after {
+  color: #ccc;
+  content: attr(data-lang);
+  font-size: .6rem;
+  font-weight: 600;
+  height: 15px;
+  line-height: 15px;
+  padding: 5px 10px 0;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 5px;
+}
+ 
+::-webkit-scrollbar-track {
+  background: #ddd;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #666;
+}
+
+/* 导航 */
+.app-nav {
+  z-index: 1999999;
+}
+
+.app-nav>ul>li {
+  cursor: pointer;
+}
+
+.app-nav>ul>li ul {
+  background: #fff;
+}
+
+/* 样式冲突， simple主题和隐藏导航栏冲突 */
+.sidebar-nav li.active>a[href^="#/"]:not([href*="?id="]):only-child {
+  background-image: var(--sidebar-nav-pagelink-background-image--collapse, var(--sidebar-nav-pagelink-background-image--loaded, var(--sidebar-nav-pagelink-background-image)));
+  background-position: var(--sidebar-nav-pagelink-background-position--collapse, var(--sidebar-nav-pagelink-background-position--loaded, var(--sidebar-nav-pagelink-background-image)));
+}
+
+.sidebar-nav li>a[href^="#/"]:not([href*="?id="]):not(:only-child) {
+  background-image: var(--sidebar-nav-pagelink-background-image);
+  background-position: var(--sidebar-nav-pagelink-background-position);
+}
+
+.markdown-section em {
+  font-weight: bold;
+}
+
+:root {
+  --base-font-family: Source Sans Pro, Helvetica Neue, Arial, sans-serif;
+  --code-font-family: Roboto Mono, Monaco, courier, monospace, Source Sans Pro;
+  --docsifytabs-tab-color--active: var(--theme-color, #4a97ec);
+  --theme-color: #4a97ec;
+  --code-block-margin: 0;
+  --code-block-border-radius: 0;
+  --code-font-size: 14px;
+  --code-inline-color: #025bbc;
+  --sidebar-nav-link-before-content-l3: '';
+  --notice-before-top: calc(50% - 12px);
+}
