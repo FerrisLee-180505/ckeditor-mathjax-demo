@@ -1,13 +1,19 @@
 import mergeDefault from '@gem-mine/cli-plugin-doc/docsify/defaults'
 
 // 如果需要在文档站中渲染您的组件库，请引用并且挂载组件库到全局对象
-// import App from '../src/App'
+import RichInput from '../src/export'
+import MathjaxViewer from '../src/export/component/MathjaxViewer'
+import mentions from '../mock/data/mentions'
+import topics from '../mock/data/topics'
 
-// window.AppDemo = App
+window.RichInput = RichInput
+window.MathjaxViewer = MathjaxViewer
+window.mentions = mentions
+window.topics = topics
 
 // docsify配置
 window.$docsify = mergeDefault({
-  name: '我的文档',
-  repo: 'https://github.com',
+  name: 'Document',
+  repo: 'https://github.com/FerrisLee-180505/ckeditor-mathjax-demo',
   plugins: []
 })
