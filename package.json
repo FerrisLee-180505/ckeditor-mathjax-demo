@@ -41,6 +41,7 @@
 		"prop-types": "^15.7.2",
 		"react": "^16.7.0",
 		"react-dom": "^16.7.0",
+		"react-markdown": "^4.3.1",
 		"scriptjs": "^2.5.9"
 	},
 	"devDependencies": {
