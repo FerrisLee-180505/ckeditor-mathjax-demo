@@ -21,38 +21,56 @@ export default class App extends React.Component {
     })
   }
 
-  dataFeed(opts, callback) {
-    const matchProperty = 'username'
-    let data = mentions.filter(function (item) {
-      return item[matchProperty].indexOf(opts.query.toLowerCase()) == 0
+  getFeedItems(queryText, datas) {
+    // As an example of an asynchronous action, return a promise
+    // that resolves after a 100ms timeout.
+    // This can be a server request or any sort of delayed action.
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const itemsToDisplay = datas
+          // Filter out the full list of all items to only those matching the query text.
+          .filter(item => item.name.toLowerCase().includes(queryText.toLowerCase()))
+          // Return 10 items max - needed for generic queries when the list may contain hundreds of elements.
+          .slice(0, 10)
+
+        resolve(itemsToDisplay)
+      }, 100)
     })
-    data = data.sort(function (a, b) {
-      return a[matchProperty].localeCompare(b[matchProperty], undefined, {
-        sensitivity: 'accent'
-      })
-    })
-    callback(data)
   }
+  customItemRenderer(item) {
+    const itemElement = document.createElement('span')
+
+    itemElement.classList.add('custom-item')
+    itemElement.id = `mention-list-item-id-${item.userId}`
+    itemElement.textContent = `${item.name} `
+
+    const usernameElement = document.createElement('span')
+
+    usernameElement.classList.add('custom-item-username')
+    usernameElement.textContent = item.id
+
+    itemElement.appendChild(usernameElement)
+
+    return itemElement
+  }
+
 
   render() {
     const { text } = this.state
-    const nextMentions = [{
-      feed: this.dataFeed,
-      itemTemplate: `<li data-id="{id}">
-        <img style="display: inline-block; vertical-align: middle; height: 30px; border-radius: 50%;" src="https://ckeditor.com/docs/ckeditor4/latest/examples/assets/mentions/img/{avatar}.jpg" /> 
-        <strong class="username">{username}</strong>
-        <span class="fullname">{fullname}</span>
-      </li>`,
-      outputTemplate: '<a href="mailto:{username}@example.com">@{username}</a><span>&nbsp;</span>',
-      minChars: 0
-    },
-    {
-      feed: topics,
-      marker: '#',
-      itemTemplate: '<li data-id="{id}"><strong>{name}</strong></li>',
-      outputTemplate: `<a href="https://example.com/social?tag={name}">{name}</a a><span>&nbsp;</span>`,
-      minChars: 1
-    }]
+    const nextMentions = {
+      feeds: [
+        {
+          marker: '@',
+          feed: keyword => this.getFeedItems(keyword, mentions),
+          itemRenderer: this.customItemRenderer
+        },
+        {
+          marker: '#',
+          feed: keyword => this.getFeedItems(keyword, topics)
+        }
+
+      ]
+    }
     return (
       <React.Fragment>
         <RichInput
@@ -72,7 +90,7 @@ export default class App extends React.Component {
 }
 </script>
 ```
-### Props
+### Component Props
 
 | Field            | Type           | Default | Remarks                                                                       |
 | ---------------- | -------------- | ------- | ----------------------------------------------------------------------------- |

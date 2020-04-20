@@ -5,6 +5,8 @@ import RichInput from '../src/export'
 import mentions from '../mock/data/mentions'
 import topics from '../mock/data/topics'
 import MathjaxViewer from '../src/export/component/MathjaxViewer'
+// import window.ClassicEditor
+import './../public/lib/ckeditor5/build/ckeditor'
 
 window.RichInput = RichInput
 window.mentions = mentions
