@@ -38,7 +38,8 @@
 		"mockjs": "^1.0.1-beta3",
 		"prop-types": "^15.7.2",
 		"react": "^16.7.0",
-		"react-dom": "^16.7.0"
+		"react-dom": "^16.7.0",
+		"scriptjs": "^2.5.9"
 	},
 	"devDependencies": {
 		"@gem-mine/babel-preset-app": "^2.4.1",
