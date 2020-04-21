@@ -64,8 +64,10 @@ export default class App extends React.Component {
         />
         <h4>The value in CKEditor:</h4>
         <p>{`${text}`}</p>
-        <h4>The result of display:</h4>
+        <h4>The result of display in Html:</h4>
         <MathjaxViewer text={text} />
+        <h4>The result of display in Markdown:</h4>
+        <MarkdownViewer text={text}/> 
       </React.Fragment>
     )
   }
