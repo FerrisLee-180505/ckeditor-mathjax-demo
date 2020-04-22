@@ -6,12 +6,15 @@ import MathjaxViewer from '../src/export/component/MathjaxViewer'
 import MarkdownViewer from '../src/export/component/MarkdownViewer'
 import mentions from '../mock/data/mentions'
 import topics from '../mock/data/topics'
+import { htmlToMarkdown, markdownToHtml } from './../src/export/utils/MarkdownUtils'
 
 window.RichInput = RichInput
 window.MathjaxViewer = MathjaxViewer
 window.mentions = mentions
 window.topics = topics
 window.MarkdownViewer = MarkdownViewer
+window.htmlToMarkdown = htmlToMarkdown
+window.markdownToHtml = markdownToHtml
 
 // docsify配置
 window.$docsify = mergeDefault({

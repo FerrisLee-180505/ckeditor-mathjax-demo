@@ -2,6 +2,9 @@
 /* react live */
   
 <script>
+
+const initText = `this is a formular：[math]\\(\\left ( {x+a}\\right )^{2}=\\sum \\limits^{n}_{k=0} {\\left ( {^{n}_{k}} \\right ){x}^{k}{a}^{n-k}}\\)[/math]`
+
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -10,7 +13,14 @@ export default class App extends React.Component {
     }
     this.handleTextChange = this.handleTextChange.bind(this)
   }
-
+  componentDidMount() {
+    // Getting mock datas from the API after 500ms
+    setTimeout(() => {
+      this.setState({
+        text: markdownToHtml(initText)
+      })
+    }, 1000)
+  }
   /**
    * function callback on value changeed
    * @param {string} nextText new value of CKEditor
@@ -43,14 +53,14 @@ export default class App extends React.Component {
         <strong class="username">{username}</strong>
         <span class="fullname">{fullname}</span>
       </li>`,
-      outputTemplate: '<a href="mailto:{username}@example.com">@{username}</a><span>&nbsp;</span>',
+      outputTemplate: '<a href="https://www.edmodo.com/{username}">@{username}</a>',
       minChars: 0
     },
     {
       feed: topics,
       marker: '#',
       itemTemplate: '<li data-id="{id}"><strong>{name}</strong></li>',
-      outputTemplate: `<a href="https://example.com/social?tag={name}">{name}</a a><span>&nbsp;</span>`,
+      outputTemplate: '<a href="https://www.edmodo.com/{name}">{name}</a>',
       minChars: 1
     }]
     return (
@@ -62,12 +72,16 @@ export default class App extends React.Component {
           mentions={nextMentions}
           handleTextChange={this.handleTextChange}
         />
+        <h4>InitText:</h4>
+        <p>{initText}</p>
         <h4>The value in CKEditor:</h4>
         <p>{`${text}`}</p>
         <h4>The result of display in Html:</h4>
         <MathjaxViewer text={text} />
         <h4>The result of display in Markdown:</h4>
-        <MarkdownViewer text={text}/> 
+        <MarkdownViewer text={text} />
+        <h4>Convert markdown:</h4>
+        <p>{htmlToMarkdown(text)}</p>
       </React.Fragment>
     )
   }
@@ -84,4 +98,3 @@ export default class App extends React.Component {
 | height           | Number\|String | 300     | height of Component                                                           |
 | mentions         | Any[]          | []      | [Doc Link](https://ckeditor.com/docs/ckeditor4/latest/examples/mentions.html) |
 | useKityformula   | Boolean        | true    | enable kityformula mathjax editor                                             |
-
