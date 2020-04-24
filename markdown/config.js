@@ -16,6 +16,8 @@ window.MarkdownViewer = MarkdownViewer
 window.htmlToMarkdown = htmlToMarkdown
 window.markdownToHtml = markdownToHtml
 
+window.initText = `[math]\\left ( {x+2a} \\right )^{2}=\\sum \\limits^{n}_{k=0} {\\left ( {^{1}_{k}} \\right ){x}^{k}{a}^{n-k}}[/math]
+`
 // docsify配置
 window.$docsify = mergeDefault({
   name: 'Document',

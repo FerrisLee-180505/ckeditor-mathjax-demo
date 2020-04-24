@@ -2,9 +2,6 @@
 /* react live */
   
 <script>
-
-const initText = `this is a formular：[math]\\(\\left ( {x+a}\\right )^{2}=\\sum \\limits^{n}_{k=0} {\\left ( {^{n}_{k}} \\right ){x}^{k}{a}^{n-k}}\\)[/math]`
-
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -14,12 +11,12 @@ export default class App extends React.Component {
     this.handleTextChange = this.handleTextChange.bind(this)
   }
   componentDidMount() {
-    // Getting mock datas from the API after 500ms
+    // getting mock datas from the API after 500ms
     setTimeout(() => {
       this.setState({
         text: markdownToHtml(initText)
       })
-    }, 1000)
+    }, 300)
   }
   /**
    * function callback on value changeed
@@ -63,6 +60,7 @@ export default class App extends React.Component {
       outputTemplate: '<a href="https://www.edmodo.com/{name}">{name}</a>',
       minChars: 1
     }]
+    const markdownText = htmlToMarkdown(text)
     return (
       <React.Fragment>
         <RichInput
@@ -79,9 +77,9 @@ export default class App extends React.Component {
         <h4>The result of display in Html:</h4>
         <MathjaxViewer text={text} />
         <h4>The result of display in Markdown:</h4>
-        <MarkdownViewer text={text} />
+        <MarkdownViewer text={markdownText} />
         <h4>Convert markdown:</h4>
-        <p>{htmlToMarkdown(text)}</p>
+        <p>{markdownText}</p>
       </React.Fragment>
     )
   }
