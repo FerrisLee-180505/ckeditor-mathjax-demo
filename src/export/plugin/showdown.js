@@ -24,6 +24,28 @@ showdown.subParser('makeMarkdown.em&strong*del', function (node, globals, before
   }
   return txt
 })
+
+showdown.subParser('makeMarkdown.links', function (node, globals) {
+  'use strict'
+
+  let txt = ''
+  if (node.hasChildNodes() && node.hasAttribute('href')) {
+    const children = node.childNodes,
+      childrenLength = children.length
+    txt = '['
+    for (let i = 0; i < childrenLength; ++i) {
+      txt += showdown.subParser('makeMarkdown.node')(children[i], globals)
+    }
+    txt += ']('
+    txt += node.getAttribute('href')
+    if (node.hasAttribute('title')) {
+      txt += ' "' + node.getAttribute('title') + '"'
+    }
+    txt += ')'
+  }
+  return txt
+})
+
 showdown.subParser('makeMarkdown.txt', function (node) {
   'use strict'
   let txt = node.nodeValue
