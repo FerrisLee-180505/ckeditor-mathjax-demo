@@ -1,10 +1,9 @@
 import React from 'react'
-import RichInput from './export'
+import { RichInput, htmlToMarkdown, markdownToHtml } from './export'
 import mentions from './../mock/data/mentions'
 import topics from './../mock/data/topics'
 import MathjaxViewer from './export/component/MathjaxViewer'
 import MarkdownViewer from './export/component/MarkdownViewer'
-import { htmlToMarkdown, markdownToHtml } from './export/utils/MarkdownUtils'
 
 const initText = `- **this is bold text** 
 - *this is italics text* 

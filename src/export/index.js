@@ -1,3 +1,8 @@
 import RichInput from './component/RichInput'
+import { htmlToMarkdown, markdownToHtml } from './utils/MarkdownUtils'
 
-export default RichInput
+export {
+  RichInput,
+  htmlToMarkdown,
+  markdownToHtml
+}
