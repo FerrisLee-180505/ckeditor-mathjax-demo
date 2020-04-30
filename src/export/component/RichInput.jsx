@@ -15,7 +15,9 @@ class RichInput extends Component {
     // ckeditor4-react default to load cdn resource, so I changed to load local resources
     // ** I refactored the mathjax plugin for better formula editing interactions **
     // If you want the initial experience, comment out this line of code and remove the folder /public/lib/ckeditor4
-    useKityformula && (CKEditor.editorUrl = 'http://gcdncs.101.com/v0.1/static/dist_learningobjectives_editor/base-cdn/ckeditor4/ckeditor.js')
+    useKityformula && (CKEditor.editorUrl = 'http://localhost:8080/lib/ckeditor4/ckeditor.js')
+    // useKityformula && (CKEditor.editorUrl = '/lib/ckeditor4/ckeditor.js')
+    // useKityformula && (CKEditor.editorUrl = 'http://gcdncs.101.com/v0.1/static/dist_learningobjectives_editor/base-cdn/ckeditor4/ckeditor.js')
     return (
       <CKEditor
         data={text}

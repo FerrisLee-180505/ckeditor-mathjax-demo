@@ -10,14 +10,6 @@ export default class App extends React.Component {
     }
     this.handleTextChange = this.handleTextChange.bind(this)
   }
-  componentDidMount() {
-    // getting mock datas from the API after 500ms
-    setTimeout(() => {
-      this.setState({
-        text: markdownToHtml(initText)
-      })
-    }, 300)
-  }
   /**
    * function callback on value changeed
    * @param {string} nextText new value of CKEditor
@@ -60,7 +52,6 @@ export default class App extends React.Component {
       outputTemplate: '<a href="https://www.edmodo.com/{name}">{name}</a>',
       minChars: 1
     }]
-    const markdownText = htmlToMarkdown(text)
     return (
       <React.Fragment>
         <RichInput
@@ -70,16 +61,8 @@ export default class App extends React.Component {
           mentions={nextMentions}
           handleTextChange={this.handleTextChange}
         />
-        <h4>InitText:</h4>
-        <p>{initText}</p>
         <h4>The value in CKEditor:</h4>
         <p>{`${text}`}</p>
-        <h4>The result of display in Html:</h4>
-        <MathjaxViewer text={text} />
-        <h4>The result of display in Markdown:</h4>
-        <MarkdownViewer text={markdownText} />
-        <h4>Convert markdown:</h4>
-        <p>{markdownText}</p>
       </React.Fragment>
     )
   }

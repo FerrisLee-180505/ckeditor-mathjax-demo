@@ -1,22 +1,13 @@
 import mergeDefault from '@gem-mine/cli-plugin-doc/docsify/defaults'
 
 // 如果需要在文档站中渲染您的组件库，请引用并且挂载组件库到全局对象
-import { htmlToMarkdown, markdownToHtml, RichInput } from '../src/export'
-import MathjaxViewer from '../src/export/component/MathjaxViewer'
-import MarkdownViewer from '../src/export/component/MarkdownViewer'
+import RichInput from '../src/export'
 import mentions from '../mock/data/mentions'
 import topics from '../mock/data/topics'
 
 window.RichInput = RichInput
-window.MathjaxViewer = MathjaxViewer
 window.mentions = mentions
 window.topics = topics
-window.MarkdownViewer = MarkdownViewer
-window.htmlToMarkdown = htmlToMarkdown
-window.markdownToHtml = markdownToHtml
-
-window.initText = `[math]\\left ( {x+2a} \\right )^{2}=\\sum \\limits^{n}_{k=0} {\\left ( {^{1}_{k}} \\right ){x}^{k}{a}^{n-k}}[/math]
-`
 // docsify配置
 window.$docsify = mergeDefault({
   name: 'Document',

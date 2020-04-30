@@ -1,19 +1,8 @@
 import React from 'react'
-import { RichInput, htmlToMarkdown, markdownToHtml } from './export'
+import RichInput from './export'
 import mentions from './../mock/data/mentions'
 import topics from './../mock/data/topics'
-import MathjaxViewer from './export/component/MathjaxViewer'
-import MarkdownViewer from './export/component/MarkdownViewer'
 
-const initText = `- **this is bold text** 
-- *this is italics text* 
-- <s>this is removed text</s> 
-
-this is a mentions： [@ajames](<https://www.edmodo.com/ajames>) 
-
-this is a hashtag： [\\#american](<https://www.edmodo.com/#american>) 
-
-this is a formular：[math]\\(\\left ( {x+a}\\right )^{2}=\\sum \\limits^{n}_{k=0} {\\left ( {^{n}_{k}} \\right ){x}^{k}{a}^{n-k}}\\)[/math]`
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -26,7 +15,7 @@ export default class App extends React.Component {
     // getting mock datas from the API after 500ms
     setTimeout(() => {
       this.setState({
-        text: markdownToHtml(initText)
+        text: ''
       })
     }, 500)
   }
@@ -81,16 +70,8 @@ export default class App extends React.Component {
           mentions={nextMentions}
           handleTextChange={this.handleTextChange}
         />
-        <h4>InitText:</h4>
-        <p>{initText}</p>
         <h4>The value in CKEditor:</h4>
         <p>{`${text}`}</p>
-        <h4>The result of display in Html:</h4>
-        <MathjaxViewer text={text} />
-        <h4>The result of display in Markdown:</h4>
-        <MarkdownViewer text={text} />
-        <h4>Convert markdown:</h4>
-        <p>{htmlToMarkdown(text)}</p>
       </React.Fragment>
     )
   }
