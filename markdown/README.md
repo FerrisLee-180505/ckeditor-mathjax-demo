@@ -56,10 +56,11 @@ export default class App extends React.Component {
       <React.Fragment>
         <RichInput
           text={text}
-          height={300}
-          useKityformula
-          mentions={nextMentions}
           handleTextChange={this.handleTextChange}
+          config={{
+            mentions: nextMentions,
+            height:200
+          }}
         />
         <h4>The value in CKEditor:</h4>
         <p>{`${text}`}</p>
@@ -71,11 +72,8 @@ export default class App extends React.Component {
 ```
 ### Props
 
-| Field            | Type           | Default | Remarks                                                                       |
-| ---------------- | -------------- | ------- | ----------------------------------------------------------------------------- |
-| text             | String         | ''      | value of CKEditor                                                             |
-| handleTextChange | Function       | noop    | callback on value changed                                                     |
-| width            | Number\|String | 'auto'  | width of Component                                                            |
-| height           | Number\|String | 300     | height of Component                                                           |
-| mentions         | Any[]          | []      | [Doc Link](https://ckeditor.com/docs/ckeditor4/latest/examples/mentions.html) |
-| useKityformula   | Boolean        | true    | enable kityformula mathjax editor                                             |
+| Field            | Type     | Default | Remarks                                                                 |
+| ---------------- | -------- | ------- | ----------------------------------------------------------------------- |
+| text             | String   | ''      | value of CKEditor                                                       |
+| handleTextChange | Function | noop    | callback on value changed                                               |
+| config           | Any      | {}      | [Doc Link](https://ckeditor.com/docs/ckeditor4/latest/guide/index.html) |

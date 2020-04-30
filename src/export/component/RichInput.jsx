@@ -3,6 +3,21 @@ import { noop } from 'lodash'
 import CKEditor from 'ckeditor4-react'
 import WithMathjaxDisplayed from '../hoc/WithMathjaxDisplayed'
 
+const defaultConfig = {
+  contentsCss: [
+    'http://cdn.ckeditor.com/4.14.0/full-all/contents.css'
+  ],
+  mathJaxLib: '//cdncs.101.com/v0.1/static/dist_learningobjectives_editor/mubiao-static/lib/MathJax/MathJax.js?config=TeX-AMS-MML_SVG-full,local/local',
+  width: 'auto',
+  height: '300px',
+  allowedContent: true,
+  extraPlugins: 'mentions,emoji,basicstyles,undo,link,wysiwygarea,toolbar,mathjax',
+  language: 'en',
+  toolbarLocation: 'top',
+  title: false
+}
+
+CKEditor.editorUrl = 'http://gcdncs.101.com/v0.1/static/dist_learningobjectives_editor/base-cdn/ckeditor4/ckeditor.js'
 
 class RichInput extends Component {
   constructor(props) {
@@ -11,13 +26,11 @@ class RichInput extends Component {
   }
 
   render() {
-    const { text, mentions, handleTextChange, width, height, useKityformula } = this.props
-    // ckeditor4-react default to load cdn resource, so I changed to load local resources
-    // ** I refactored the mathjax plugin for better formula editing interactions **
-    // If you want the initial experience, comment out this line of code and remove the folder /public/lib/ckeditor4
-    useKityformula && (CKEditor.editorUrl = 'http://localhost:8080/lib/ckeditor4/ckeditor.js')
-    // useKityformula && (CKEditor.editorUrl = '/lib/ckeditor4/ckeditor.js')
-    // useKityformula && (CKEditor.editorUrl = 'http://gcdncs.101.com/v0.1/static/dist_learningobjectives_editor/base-cdn/ckeditor4/ckeditor.js')
+    const { text, handleTextChange, config } = this.props
+    const nextConfig = {
+      ...defaultConfig,
+      ...config
+    }
     return (
       <CKEditor
         data={text}
@@ -25,20 +38,7 @@ class RichInput extends Component {
           const nextText = evt.editor.getData()
           handleTextChange(nextText)
         }}
-        config={{
-          contentsCss: [
-            'http://cdn.ckeditor.com/4.14.0/full-all/contents.css'
-          ],
-          mathJaxLib: '//cdncs.101.com/v0.1/static/dist_learningobjectives_editor/mubiao-static/lib/MathJax/MathJax.js?config=TeX-AMS-MML_SVG-full,local/local',
-          width,
-          height,
-          allowedContent: true,
-          extraPlugins: 'mentions,emoji,basicstyles,undo,link,wysiwygarea,toolbar,mathjax',
-          language: 'en',
-          toolbarLocation: 'top',
-          title: false,
-          mentions
-        }}
+        config={nextConfig}
       >
       </CKEditor>
     )
@@ -46,10 +46,7 @@ class RichInput extends Component {
 }
 RichInput.defaultProps = {
   text: '',
-  mentions: [],
-  height: 300,
-  useKityformula: true,
-  width: 'auto',
+  config: {},
   handleTextChange: noop
 }
 
