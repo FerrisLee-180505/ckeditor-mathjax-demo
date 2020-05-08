@@ -26,13 +26,15 @@ class RichInput extends Component {
   }
 
   render() {
-    const { text, handleTextChange, config } = this.props
+    const { text, handleTextChange, config, style } = this.props
     const nextConfig = {
       ...defaultConfig,
       ...config
     }
     return (
       <CKEditor
+        style={style}
+        type={config.type}
         data={text}
         onChange={evt => {
           const nextText = evt.editor.getData()
@@ -47,6 +49,7 @@ class RichInput extends Component {
 RichInput.defaultProps = {
   text: '',
   config: {},
+  style: {},
   handleTextChange: noop
 }
 
