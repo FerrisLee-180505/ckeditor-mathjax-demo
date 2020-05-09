@@ -17,7 +17,6 @@ const defaultConfig = {
   title: false
 }
 
-CKEditor.editorUrl = 'http://gcdncs.101.com/v0.1/static/dist_learningobjectives_editor/base-cdn/ckeditor4/ckeditor.js'
 
 class RichInput extends Component {
   constructor(props) {
@@ -26,10 +25,13 @@ class RichInput extends Component {
   }
 
   render() {
-    const { text, handleTextChange, config, style } = this.props
+    const { text, handleTextChange, config, style, useKityFormular } = this.props
     const nextConfig = {
       ...defaultConfig,
       ...config
+    }
+    if (useKityFormular) {
+      CKEditor.editorUrl = 'http://gcdncs.101.com/v0.1/static/dist_learningobjectives_editor/base-cdn/ckeditor4/ckeditor.js'
     }
     return (
       <CKEditor
@@ -50,6 +52,7 @@ RichInput.defaultProps = {
   text: '',
   config: {},
   style: {},
+  useKityFormular: true,
   handleTextChange: noop
 }
 
