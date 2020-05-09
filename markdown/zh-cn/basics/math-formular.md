@@ -59,7 +59,9 @@ export default class App extends React.Component {
           handleTextChange={this.handleTextChange}
           config={{
             mentions: nextMentions,
-            height:200
+            height:200,
+            skin:'moono-lisa',
+            toolbar:[['Source','-','Bold','Italic','-','Mathjax']]
           }}
         />
         <h4>The value in CKEditor:</h4>
