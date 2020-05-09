@@ -1,4 +1,5 @@
 - [Introduce](zh-cn/basics/introduce.md)
 - [Math Formular](zh-cn/basics/math-formular.md)
+- [Defautl Math Formular](zh-cn/basics/default-math-formular.md)
 - [Inline Editing](zh-cn/basics/inline-editing.md)
 - [Skins](zh-cn/basics/skins.md)
