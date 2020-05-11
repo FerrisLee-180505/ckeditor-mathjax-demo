@@ -3,3 +3,4 @@
 - [Defautl Math Formular](zh-cn/basics/default-math-formular.md)
 - [Inline Editing](zh-cn/basics/inline-editing.md)
 - [Skins](zh-cn/basics/skins.md)
+- [Right To Left](zh-cn/basics/right-to-left.md)
