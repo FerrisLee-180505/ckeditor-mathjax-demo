@@ -7,14 +7,14 @@ const DEFAULT_SCRIPT = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/Mat
 const DEFAULT_OPTIONS = {
   jax: ['input/TeX', 'output/CommonHTML'],
   TeX: {
-    extensions: ['autoload-all.js']
+    extensions: ['autoload-all.js'],
   },
   messageStyles: 'none',
   showProcessingMessages: false,
   showMathMenu: false,
   showMathMenuMSIE: false,
   preview: 'none',
-  delayStartupTypeset: true
+  delayStartupTypeset: true,
 }
 
 const loadMathJax = ({ macros: Macros, script, mathjaxConfig }) => {

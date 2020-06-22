@@ -7,6 +7,7 @@ import Styles from './styles'
 const styles = Styles.inline
 
 export default class InlineTeX extends Component {
+
   constructor(props) {
     super(props)
 
@@ -21,25 +22,7 @@ export default class InlineTeX extends Component {
       })
     }
 
-    this.onChange = (newState, cb = () => {}) => {
-      // Ne serait-ce pas mieux (plus simple) que l'entité
-      // porte l'état du composant (sauf editMode) ?
-      // Nécessite une grosse reprise du code...
-
-      // const {editMode, ...data} = newState
-      // const {
-      //   getEditorState: get,
-      //   setEditorState: set,
-      //   entityKey: ek
-      // } = this.props
-      // const es = get()
-      // const cs = es.getCurrentContent()
-      // set(EditorState.set(es, {
-      //   currentContent: cs.mergeEntityData(
-      //     ek, data
-      //   )
-      // }))
-
+    this.onChange = (newState, cb = () => { }) => {
       this.setState(newState, cb)
     }
 
@@ -59,23 +42,25 @@ export default class InlineTeX extends Component {
           teX,
           contentState.getEntity(entityKey).getData().teX,
         )
-        finishEdit(store)(...saveTeX({
-          after,
-          contentState,
-          teX,
-          displaystyle,
-          entityKey,
-          blockKey: offsetKey.split('-')[0],
-          ...React.Children.map(children, c => ({
-            startPos: c.props.start
-          }))[0]
-          // ...React.Children.map(children, (c) => {
-          //   debugger
-          //   return {
-          //     startPos: c.props.start,
-          //   }
-          // })[0],
-        }))
+        finishEdit(store)(
+          ...saveTeX({
+            after,
+            contentState,
+            teX,
+            displaystyle,
+            entityKey,
+            blockKey: offsetKey.split('-')[0],
+            ...React.Children.map(children, c => ({
+              startPos: c.props.start
+            }))[0]
+            // ...React.Children.map(children, (c) => {
+            //   debugger
+            //   return {
+            //     startPos: c.props.start,
+            //   }
+            // })[0],
+          }),
+        )
       })
     }
   }
@@ -88,7 +73,7 @@ export default class InlineTeX extends Component {
     return { editMode: teX.length === 0, teX, displaystyle }
   }
 
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     const store = this.props.getStore()
     if (this.state.editMode) {
       store.setReadOnly(true)
@@ -99,7 +84,7 @@ export default class InlineTeX extends Component {
   //   console.log("unmount", this.props.entityKey);
   // }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     const { entityKey } = nextProps
     const store = nextProps.getStore()
     const { key } = store.teXToUpdate
@@ -115,7 +100,7 @@ export default class InlineTeX extends Component {
       newInternalState,
       () =>
         newInternalState.editMode &&
-      store.setReadOnly(true),
+        store.setReadOnly(true),
     )
   }
 
@@ -126,8 +111,7 @@ export default class InlineTeX extends Component {
   render() {
     const { editMode, teX, displaystyle } = this.state
 
-    const { completion } = this.props.getStore()
-
+    const completion = this.props.getStore().completion
     let input = null
     if (editMode) {
       input = (

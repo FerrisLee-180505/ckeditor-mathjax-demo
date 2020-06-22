@@ -1,7 +1,7 @@
 import {
   getDefaultKeyBinding,
   KeyBindingUtil,
-  EditorState
+  EditorState,
   // convertToRaw,
 } from 'draft-js'
 
@@ -14,7 +14,7 @@ export const myKeyBindingFn = getEditorState => (e) => {
   if (e.keyCode === /* m */ 77 && hasCommandModifier(e)) {
     return 'insert-texblock'
   }
-  if (e.key === /* $ */ '$' /* && hasCommandModifier(e) */) {
+  if (e.key === /* $ */ '$' /* && hasCommandModifier(e)*/) {
     const c = getEditorState().getCurrentContent()
     const s = getEditorState().getSelection()
     if (!s.isCollapsed()) return 'insert-inlinetex'
@@ -73,6 +73,6 @@ export function changeDecorator(editorState, decorator) {
     allowUndo: true,
     currentContent: editorState.getCurrentContent(),
     decorator,
-    selection: editorState.getSelection()
+    selection: editorState.getSelection(),
   })
 }

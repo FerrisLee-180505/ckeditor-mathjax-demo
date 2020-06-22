@@ -83,7 +83,9 @@ function getAllTeX(contentState) {
 }
 
 function getInitialMostUsedTeXCmds(editorState) {
-  return getMostUsedTeXCmds(getAllTeX(editorState.getCurrentContent()))
+  return getMostUsedTeXCmds(
+    getAllTeX(editorState.getCurrentContent()),
+  )
 }
 
 function updateMostUsedTeXCmds(
@@ -157,5 +159,5 @@ export default (status, macros) => editorState => ({
       this.teXCommandsAndMacros,
       this.mostUsedTeXCommands,
     )
-  }
+  },
 })

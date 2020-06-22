@@ -1,6 +1,6 @@
 import {
   Modifier,
-  EditorState
+  EditorState,
 } from 'draft-js'
 import { Map } from 'immutable'
 import customInsertAtomicBlock from './customInsertAtomicBlock'
@@ -9,7 +9,6 @@ import { isAtEndOfBlock } from './utils'
 function insertInlineTeX(editorState) {
   let contentState = editorState.getCurrentContent()
   let selection = editorState.getSelection()
-
   let teX = ''
 
   // si la selection est étendue, utiliser le texte sélectionné
@@ -38,7 +37,7 @@ function insertInlineTeX(editorState) {
     'IMMUTABLE',
     {
       teX,
-      displaystyle: false
+      displaystyle: false,
     },
   )
   const entityKey = contentState.getLastCreatedEntityKey()
@@ -74,15 +73,13 @@ function insertInlineTeX(editorState) {
     )
   }
 
-  return EditorState.push(
-    editorState,
-    contentState,
-    'apply-entity',
-  )
+  return EditorState.push(editorState, contentState, 'apply-entity')
 }
 
 function insertTeXBlock(editorState) {
-  return customInsertAtomicBlock(editorState, Map({ mathjax: true, teX: '' }))
+  return customInsertAtomicBlock(
+    editorState, Map({ mathjax: true, teX: '' }),
+  )
 }
 
 export default function insertTeX(editorState, block = false) {

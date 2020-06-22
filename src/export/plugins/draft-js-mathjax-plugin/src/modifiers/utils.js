@@ -34,12 +34,12 @@ export function getNewBlockSelection(blockBefore, blockAfter, after) {
   }
 
   return SelectionState
-    .createEmpty(nextBlock.getKey())
-    .merge({
-      anchorOffset: offset,
-      focusOffset: offset,
-      hasFocus: true
-    })
+      .createEmpty(nextBlock.getKey())
+      .merge({
+        anchorOffset: offset,
+        focusOffset: offset,
+        hasFocus: true,
+      })
 }
 
 export function removeBlock(contentState, block, after = 1) {
@@ -59,7 +59,9 @@ export function removeBlock(contentState, block, after = 1) {
   const newBlockMap = blockMap.delete(blockKey)
   return contentState
     .set('blockMap', newBlockMap)
-    .set('selectionAfter', getNewBlockSelection(blockBefore, blockAfter, after))
+    .set('selectionAfter', getNewBlockSelection(
+      blockBefore, blockAfter, after,
+    ))
 }
 
 export function removeEntity(contentState, blockKey, start, end) {
@@ -67,7 +69,7 @@ export function removeEntity(contentState, blockKey, start, end) {
     .createEmpty(blockKey)
     .merge({
       anchorOffset: start,
-      focusOffset: end
+      focusOffset: end,
     })
 
   return Modifier.removeRange(
@@ -87,7 +89,11 @@ export function finishEdit(store) {
     )
 
     if (newSelection !== undefined) {
-      store.setEditorState(EditorState.forceSelection(newEditorState, newSelection))
+      store.setEditorState(
+        EditorState.forceSelection(
+          newEditorState, newSelection,
+        ),
+      )
       setTimeout(() => store.getEditorRef().focus(), 5)
     } else {
       store.setEditorState(newEditorState)
@@ -102,17 +108,21 @@ function _saveInlineTeX({
   displaystyle,
   entityKey,
   blockKey,
-  startPos
+  startPos,
 }) {
   const needRemove = teX.length === 0
   let newContentState
   let newSelection
 
   if (needRemove) {
-    newContentState = removeEntity(contentState, blockKey, startPos, startPos + 1)
+    newContentState = removeEntity(
+      contentState, blockKey, startPos, startPos + 1,
+    )
     newSelection = newContentState.getSelectionAfter()
   } else {
-    newContentState = contentState.mergeEntityData(entityKey, { teX, displaystyle })
+    newContentState = contentState.mergeEntityData(
+      entityKey, { teX, displaystyle },
+    )
 
     if (after !== undefined) {
       const offset = after ? startPos + 2 : startPos
@@ -120,7 +130,7 @@ function _saveInlineTeX({
         .merge({
           anchorOffset: offset,
           focusOffset: offset,
-          hasFocus: true
+          hasFocus: true,
         })
     }
   }
@@ -132,7 +142,7 @@ function _saveBlockTeX({
   after,
   contentState,
   teX,
-  block
+  block,
 }) {
   const needRemove = teX.length === 0
   const blockKey = block.getKey()
@@ -141,7 +151,9 @@ function _saveBlockTeX({
   let newSelection
 
   if (needRemove) {
-    newContentState = removeBlock(contentState, block, after)
+    newContentState = removeBlock(
+      contentState, block, after,
+    )
     newSelection = newContentState.getSelectionAfter()
   } else {
     newContentState = Modifier.mergeBlockData(
@@ -171,8 +183,6 @@ export function saveTeX({
   ...common
 }) {
   return entityKey ?
-    _saveInlineTeX({
-      ...common, entityKey, displaystyle, blockKey, startPos
-    }) :
+    _saveInlineTeX({ ...common, entityKey, displaystyle, blockKey, startPos }) :
     _saveBlockTeX({ ...common, block })
 }

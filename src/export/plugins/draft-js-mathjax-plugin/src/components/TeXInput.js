@@ -1,7 +1,8 @@
 import React from 'react'
+import { Modal, Button, ModalBody, ModalFooter } from 'reactstrap'
 
 const _isAlpha = key => key.length === 1 &&
-      /[a-z]/.test(key.toLowerCase())
+  /[a-z]/.test(key.toLowerCase())
 
 function indent({ text, start, end }, unindent = false) {
   const nl0 = text.slice(0, start).split('\n').length - 1
@@ -41,6 +42,7 @@ const closeDelim = {
 }
 
 class TeXInput extends React.Component {
+
   constructor(props) {
     super(props)
     const {
@@ -102,26 +104,44 @@ class TeXInput extends React.Component {
     this.handleKey = this.handleKey.bind(this)
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('message', this.callback)
+  }
   componentDidMount() {
-    const { start, end } = this.state
     setTimeout(() => {
-      this.teXinput.focus()
-      this.teXinput.setSelectionRange(start, end)
+      const { start, end } = this.state
+      if (this.teXinput) {
+        this.teXinput.focus()
+        this.teXinput.setSelectionRange(start, end)
+      }
     }, 0)
+    setTimeout(() => {
+      this.iframeDom.contentWindow.postMessage(JSON.stringify({
+        type: 'init-data',
+        text: this.props.teX
+      }), '*')
+      window.addEventListener('message', this.callback, false)
+    }, 1000)
+  }
+  callback = (event) => {
+    const { type, text } = JSON.parse(event.data)
+    if (type === 'return-current-latex') {
+      const nextText = text.slice(2, text.length - 2)
+      this.props.onChange({
+        teX: nextText
+      })
+      this.setState({
+        start: nextText.length, end: nextText.length
+      })
+    }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps) {
     if (this.props.teX !== nextProps.teX) {
       return true
     }
-    const { start, end } = nextState
-    const { selectionStart, selectionEnd } = this.teXinput
-    if (start === selectionStart && end === selectionEnd) {
-      return false
-    }
-    return true
+    return false
   }
-
   componentDidUpdate(prevProps, prevState) {
     const { start: s, end: e } = prevState
     const { start: ns, end: ne } = this.state
@@ -131,14 +151,12 @@ class TeXInput extends React.Component {
   }
 
   handleKey(evt) {
-    const {
-      teX, finishEdit, onChange, displaystyle, completion
-    } = this.props
+    const { teX, finishEdit, onChange, displaystyle, completion } = this.props
     const { start, end } = this.state
     const inlineMode = displaystyle !== undefined
     const collapsed = start === end
     const cplDisable = completion.status === 'none'
-    const { key } = evt
+    const key = evt.key
 
     if (!cplDisable && key !== 'Tab' && key !== 'Shift') {
       this.completionList = []
@@ -188,11 +206,11 @@ class TeXInput extends React.Component {
             completion.status === 'auto'
         ) || (
           key === 'Tab' &&
-            this.completionList.length > 1
+              this.completionList.length > 1
         ) || (
           completion.status === 'manual' &&
-            evt.ctrlKey &&
-            key === ' '
+              evt.ctrlKey &&
+              key === ' '
         ))
       ) {
         // completion
@@ -227,7 +245,7 @@ class TeXInput extends React.Component {
   _handleCompletion(evt) {
     const { completion, teX, onChange } = this.props
     const { start, end } = this.state
-    const { key } = evt
+    const key = evt.key
     const prefix = completion.getLastTeXCommand(teX.slice(0, start))
     const pl = prefix.length
     const startCmd = start - pl
@@ -238,7 +256,9 @@ class TeXInput extends React.Component {
     if (!pl) { return }
 
     if (isAlpha || (evt.ctrlKey && key === ' ')) {
-      this.completionList = completion.computeCompletionList(prefix + (isAlpha ? key : ''))
+      this.completionList = completion.computeCompletionList(
+        prefix + (isAlpha ? key : ''),
+      )
     }
 
     const L = this.completionList.length
@@ -272,121 +292,6 @@ class TeXInput extends React.Component {
     }), 0)
   }
 
-  // handleKey(evt) {
-  //   const key = evt.key
-
-  //   const { teX, finishEdit, onChange, displaystyle, completion } = this.props
-  //   const { start, end } = this.state
-  //   const inlineMode = displaystyle !== undefined
-
-  //   const collapsed = start === end
-  //   const atEnd = collapsed && teX.length === end
-  //   const atBegin = collapsed && end === 0
-
-  //   const ArrowLeft = key === 'ArrowLeft'
-  //   const ArrowRight = key === 'ArrowRight'
-  //   const Escape = key === 'Escape'
-  //   const Tab = key === 'Tab'
-  //   const Space = key === ' '
-  //   const $ = key === '$'
-  //   const Shift = evt.shiftKey
-  //   const Ctrl = evt.ctrlKey
-  // const isDelim = Object.prototype.hasOwnProperty
-  //   .call(closeDelim, key)
-
-  //   const toggleDisplaystyle = $ && inlineMode
-
-  //   const findCompletion = Tab && this.completionList.length > 1
-  //   const launchCompletion = Ctrl && Space
-  //   const isAlpha = key.length === 1 &&
-  //     /[a-z]/.test(key.toLowerCase())
-
-  //   // sortie du mode édition
-  //   if ((
-  //     ArrowLeft && atBegin
-  //   ) || (
-  //     ArrowRight && atEnd
-  //   ) || (
-  //     Tab && this.completionList.length === 0
-  //   ) || (
-  //     Escape
-  //   )) {
-  //     evt.preventDefault()
-  //     finishEdit(ArrowLeft ? 0 : 1)
-  //   }
-
-  //   if (toggleDisplaystyle) {
-  //     evt.preventDefault()
-  //     onChange({ displaystyle: !displaystyle })
-  //   }
-
-  //   // insertion d'un délimiteur
-  //   if (isDelim) {
-  //     evt.preventDefault()
-  //     this._insertText(key + closeDelim[key], -1)
-  //   }
-
-  //   // completion
-  //   if (!findCompletion) {
-  //     this.index = 0
-  //     this.completionList = []
-  //   }
-  //   if (
-  //     completion.status !== 'none' &&
-  //     (
-  //       (isAlpha && completion.status === 'auto') ||
-  //       launchCompletion ||
-  //       findCompletion
-  //     )
-  //   ) {
-  //     const prefix = getLastTeXCommand(teX.slice(0, start))
-  //     const pl = prefix.length
-  //     const startCmd = start - pl
-  //     let ns = start
-  //     let offset
-
-  //     if (!pl) { return }
-
-  //     if (isAlpha || launchCompletion) {
-  //       this.completionList = computeCompletionList(
-  //         prefix + (launchCompletion ? '' : key),
-  //         this.teXCommands,
-  //         this.mostUsedCommands,
-  //       )
-  //     }
-
-  //     const L = this.completionList.length
-  //     if (L === 0) {
-  //       return
-  //     } else if (L === 1) {
-  //       // une seule possibilité: insertion!
-  //       this.index = 0
-  //     } else if (findCompletion) {
-  //       // Tab ou S-Tab: on circule...
-  //       offset = Shift ? -1 : 1
-  //       this.index += offset
-  //       this.index = (this.index === -1) ? L - 1 : this.index % L
-  //     } else {
-  //       // isAlpha est true et plusieurs completions possibles
-  //       this.index = 0
-  //       ns = isAlpha ? ns + 1 : ns // pour avancer après la lettre insérée le cas échéant
-  //     }
-
-  //     const cmd = this.completionList[this.index]
-  //     const endCmd = startCmd + cmd.length
-  //     const teXUpdated = teX.slice(0, startCmd) +
-  //       cmd + teX.slice(end)
-  //     ns = L === 1 ? endCmd : ns
-
-  //     evt.preventDefault()
-  //     onChange({ teX: teXUpdated })
-  //     setTimeout(() => this.setState({
-  //       start: ns,
-  //       end: endCmd,
-  //     }), 0)
-  //   }
-  // }
-
   render() {
     const { teX, className, style } = this.props
     const teXArray = teX.split('\n')
@@ -394,7 +299,8 @@ class TeXInput extends React.Component {
     const cols = teXArray
       .map(tl => tl.length)
       .reduce((acc, size) => (size > acc ? size : acc), 1)
-    return (
+    const old = false
+    return old ? (
       <textarea
         rows={rows}
         cols={cols}
@@ -408,6 +314,44 @@ class TeXInput extends React.Component {
         style={style}
       />
     )
+      : (
+        <Modal
+          isOpen
+          size="lg"
+          style={{maxWidth: '986px', width: '90%'}}
+        >
+          <ModalBody
+            style={{
+              width: 984
+            }}
+          >
+            <iframe
+              ref={(iframeDom) => { this.iframeDom = iframeDom }}
+              title="kity-formular-plugin"
+              style={{ width: '100%', height: '800px' }}
+              // kityformular 部署的远程 cdn 地址
+              src="//gcdncs.101.com/v0.1/static/learningcar/CDN/lib/kityformula/dialogs/kityformula-mathjax.html?serviceName=learningcar"
+              // 本地调试的 kityformular
+              // src="lib/kityformula/kityformula-mathjax.html"
+              frameBorder="0"
+            />
+          </ModalBody>
+          <ModalFooter>
+
+            <p style={{ textAlign: 'right' }}>
+              <Button
+                style={{ marginRight: 10 }}
+                onClick={this.onBlur}
+              >
+                Ok
+              </Button>
+              <Button>
+                Cancel
+              </Button>
+            </p>
+          </ModalFooter>
+        </Modal>
+      )
   }
 }
 

@@ -83,7 +83,7 @@ class MathJaxNode extends Component {
    * Clear the jax
    */
   clear() {
-    const { MathJax } = window
+    const MathJax = window.MathJax
 
     if (!this.script || !MathJax || !MathJax.isReady) {
       return
@@ -100,7 +100,7 @@ class MathJaxNode extends Component {
    * @param {Boolean} forceUpdate
    */
   typeset(forceUpdate) {
-    const { MathJax } = window
+    const MathJax = window.MathJax
     const { children, onRender } = this.props
 
     const text = children
@@ -122,7 +122,8 @@ class MathJaxNode extends Component {
     } else {
       const script = this.setScriptText(text)
       MathJax.Hub.Queue(() =>
-        processTeX(MathJax, script, onRender))
+        processTeX(MathJax, script, onRender),
+      )
     }
   }
 
@@ -133,6 +134,7 @@ class MathJaxNode extends Component {
     }
     return <span style={{ color: 'red' }}>{this.props.children}</span>
   }
+
 }
 
 MathJaxNode.defaultProps = {

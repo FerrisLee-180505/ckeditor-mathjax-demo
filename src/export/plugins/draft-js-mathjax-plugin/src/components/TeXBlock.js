@@ -7,6 +7,7 @@ import Styles from './styles'
 const styles = Styles.block
 
 export default class TeXBlock extends Component {
+
   constructor(props) {
     super(props)
 
@@ -35,12 +36,14 @@ export default class TeXBlock extends Component {
           teX,
           block.getData().teX,
         )
-        finishEdit(store)(...saveTeX({
-          after,
-          contentState,
-          teX,
-          block
-        }))
+        finishEdit(store)(
+          ...saveTeX({
+            after,
+            contentState,
+            teX,
+            block
+          }),
+        )
       })
     }
 
@@ -75,7 +78,7 @@ export default class TeXBlock extends Component {
     const { editMode, teX, displaystyle } = this.state
 
     const store = this.props.blockProps.getStore()
-    const { completion } = store
+    const completion = store.completion
 
     let input = null
     if (editMode) {
@@ -102,9 +105,8 @@ export default class TeXBlock extends Component {
     const style = styles[(editMode ? 'preview' : 'rendered')]
     return (
       <div
-        style={{
-          position: editMode ?
-            'relative' : undefined
+        style={{ position: editMode ?
+          'relative' : undefined
         }}
       >
         {input}

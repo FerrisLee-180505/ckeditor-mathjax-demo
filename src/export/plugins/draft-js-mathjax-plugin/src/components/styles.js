@@ -8,20 +8,7 @@ const commonEdit = {
 }
 
 const commonPreview = {
-  position: 'absolute',
-  /* on centre:
-   * cf https://www.w3.org/Style/Examples/007/center.en.html
-   * */
-  left: '50%',
-  marginRright: '-50%',
-  transform: 'translate(-50%, 0)',
-
-  padding: '10px',
-  zIndex: 10,
-  background: 'ivory',
-  border: '1px solid #ccc',
-  borderRadius: '5px',
-  boxShadow: '5px 5px 5px rgba(0,0,0,0.7)'
+  visibility: 'hidden'
 }
 
 const commonRendered = {

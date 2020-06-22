@@ -20,7 +20,7 @@ export default {
     'ast',
     'asymp',
     'atop',
-    'atopwithdelims'
+    'atopwithdelims',
   ],
   b: [
     'backepsilon', // AMSsymbols
@@ -94,7 +94,7 @@ export default {
     'buildrel',
     'bullet',
     'Bumpeq', // AMSsymbols
-    'bumpeq' // AMSsymbols
+    'bumpeq', // AMSsymbols
   ],
   c: [
     'cal',
@@ -146,7 +146,7 @@ export default {
     'curlyvee', // AMSsymbols
     'curlywedge', // AMSsymbols
     'curvearrowleft', // AMSsymbols
-    'curvearrowright' // AMSsymbols
+    'curvearrowright', // AMSsymbols
   ],
   d: [
     'dagger',
@@ -197,7 +197,7 @@ export default {
     'downarrow',
     'downdownarrows', // AMSsymbols
     'downharpoonleft', // AMSsymbols
-    'downharpoonright' // AMSsymbols
+    'downharpoonright', // AMSsymbols
   ],
   e: [
     'ell',
@@ -218,7 +218,7 @@ export default {
     'eta',
     'eth', // AMSsymbols
     'exists',
-    'exp'
+    'exp',
   ],
   f: [
     'fallingdotseq', // AMSsymbols
@@ -229,7 +229,7 @@ export default {
     'forall',
     'frac',
     'frak',
-    'frown'
+    'frown',
   ],
   g: [
     'Game', // AMSsymbols
@@ -260,7 +260,7 @@ export default {
     'gtreqqless', // AMSsymbols
     'gtrless', // AMSsymbols
     'gtrsim', // AMSsymbols
-    'gvertneqq' // AMSsymbols
+    'gvertneqq', // AMSsymbols
   ],
   h: [
     'hat',
@@ -279,7 +279,7 @@ export default {
     'hspace',
     'Huge',
     'huge',
-    'idotsint' // AMSmath
+    'idotsint', // AMSmath
   ],
   i: [
     'iff',
@@ -298,16 +298,16 @@ export default {
     'intercal', // AMSsymbols
     'intop',
     'iota',
-    'it'
+    'it',
   ],
   j: [
     'jmath',
-    'Join' // AMSsymbols
+    'Join', // AMSsymbols
   ],
   k: [
     'kappa',
     'ker',
-    'kern'
+    'kern',
   ],
   l: [
     'label', // [AMSmath]
@@ -391,7 +391,7 @@ export default {
     'ltimes', // AMSsymbols
     'lVert', // AMSmath
     'lvert', // AMSmath
-    'lvertneqq' // AMSsymbols
+    'lvertneqq', // AMSsymbols
   ],
   m: [
     'maltese', // AMSsymbols
@@ -436,7 +436,7 @@ export default {
     'mskip',
     'mspace',
     'mu',
-    'multimap' // AMSsymbols
+    'multimap', // AMSsymbols
   ],
   n: [
     'nabla',
@@ -497,7 +497,7 @@ export default {
     'nVdash', // AMSsymbols
     'nvDash', // AMSsymbols
     'nvdash', // AMSsymbols
-    'nwarrow'
+    'nwarrow',
   ],
   o: [
     'odot',
@@ -519,7 +519,7 @@ export default {
     'overrightarrow',
     'overset',
     'overwithdelims',
-    'owns'
+    'owns',
   ],
   p: [
     'parallel',
@@ -550,11 +550,11 @@ export default {
     'projlim', // AMSmath
     'propto',
     'Psi',
-    'psi'
+    'psi',
   ],
   q: [
     'qquad',
-    'quad'
+    'quad',
   ],
   r: [
     'raise',
@@ -594,7 +594,7 @@ export default {
     'rtimes', // AMSsymbols
     'Rule', // non-standard
     'rVert', // AMSmath
-    'rvert' // AMSmath
+    'rvert', // AMSmath
   ],
   s: [
     'S',
@@ -666,7 +666,7 @@ export default {
     'supsetneq', // AMSsymbols
     'supsetneqq', // AMSsymbols
     'surd',
-    'swarrow'
+    'swarrow',
   ],
   t: [
     'tag', // [AMSmath]
@@ -706,7 +706,7 @@ export default {
     'trianglerighteq', // AMSsymbols
     'tt',
     'twoheadleftarrow', // AMSsymbols
-    'twoheadrightarrow' // AMSsymbols
+    'twoheadrightarrow', // AMSsymbols
   ],
   u: [
     'underbrace',
@@ -729,7 +729,7 @@ export default {
     'Upsilon',
     'upsilon',
     'upuparrows', // AMSsymbols
-    'urcorner' // AMSsymbols
+    'urcorner', // AMSsymbols
   ],
   v: [
     'varDelta', // AMSsymbols
@@ -773,14 +773,14 @@ export default {
     'Vert',
     'vert',
     'vphantom',
-    'Vvdash' // AMSsymbols
+    'Vvdash', // AMSsymbols
   ],
   w: [
     'wedge',
     'widehat',
     'widetilde',
     'wp',
-    'wr'
+    'wr',
   ],
   x: [
     'Xi',
@@ -792,14 +792,14 @@ export default {
     'xrightarrow', // AMSmath
     'xtofrom', // extpfeil
     'xtwoheadleftarrow', // extpfeil
-    'xtwoheadrightarrow' // extpfeil
+    'xtwoheadrightarrow', // extpfeil
   ],
   y: [
-    'yen' // AMSsymbols
+    'yen', // AMSsymbols
   ],
   z: [
-    'zeta'
-  ]
+    'zeta',
+  ],
 }
 
 

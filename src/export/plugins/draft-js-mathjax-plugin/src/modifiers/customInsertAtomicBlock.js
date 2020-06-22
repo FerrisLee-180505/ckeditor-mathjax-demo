@@ -43,8 +43,8 @@ export default function customInsertAtomicBlock(
       type: 'atomic',
       // text: character,
       // characterList: List(Repeat(charData, character.length)),
-      data
-    })
+      data,
+    }),
   ]
 
   if (!atEndOfBlock || atEndOfContent) {
@@ -52,7 +52,7 @@ export default function customInsertAtomicBlock(
     // le cas où le curseur est la fin d'un bloc
     fragmentArray.push(new ContentBlock({
       key: genKey(),
-      type: 'unstyled'
+      type: 'unstyled',
       // text: '',
       // characterList: List(),
     }))
@@ -68,7 +68,7 @@ export default function customInsertAtomicBlock(
 
   const newContent = withAtomicBlock.merge({
     selectionBefore: selectionState,
-    selectionAfter: withAtomicBlock.getSelectionAfter().set('hasFocus', false)
+    selectionAfter: withAtomicBlock.getSelectionAfter().set('hasFocus', false),
   })
 
   return EditorState.push(editorState, newContent, 'insert-fragment')

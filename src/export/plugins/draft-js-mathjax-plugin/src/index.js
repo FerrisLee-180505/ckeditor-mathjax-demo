@@ -1,3 +1,7 @@
+/**
+ * 这是 draftjs 中，用于公式输入的插件，后续可以计划组件化剥离，成为一款独立的 draftjs 插件。
+ */
+
 import { EditorState, Modifier } from 'draft-js'
 import {
   myKeyBindingFn,
@@ -36,7 +40,9 @@ const createMathjaxPlugin = (config = {}) => {
 
   const _insertTeX = (block = false) => {
     const editorState = store.getEditorState()
-    store.setEditorState(insertTeX(editorState, block))
+    store.setEditorState(
+      insertTeX(editorState, block),
+    )
   }
 
   const insertChar = (char) => {
@@ -51,7 +57,9 @@ const createMathjaxPlugin = (config = {}) => {
       }),
       char,
     )
-    store.setEditorState(EditorState.push(editorState, newContentState, 'insert-characters'))
+    store.setEditorState(
+      EditorState.push(editorState, newContentState, 'insert-characters'),
+    )
   }
 
   const keyBindingFn = (e, { getEditorState }) =>
@@ -79,10 +87,12 @@ const createMathjaxPlugin = (config = {}) => {
     // cf.componentWillReceiveProps
     store.teXToUpdate = { key, dir }
     const editorState = store.getEditorState()
-    store.setEditorState(EditorState.forceSelection(
-      editorState,
-      editorState.getSelection(),
-    ))
+    store.setEditorState(
+      EditorState.forceSelection(
+        editorState,
+        editorState.getSelection(),
+      ),
+    )
   }
 
   const handleKeyCommand = (command /* ,{ getEditorState, setEditorState } */) => {
@@ -119,9 +129,7 @@ const createMathjaxPlugin = (config = {}) => {
   }
 
   return {
-    initialize: ({
-      getEditorState, setEditorState, getReadOnly, setReadOnly, getEditorRef
-    }) => {
+    initialize: ({ getEditorState, setEditorState, getReadOnly, setReadOnly, getEditorRef }) => {
       store.getEditorState = getEditorState
       store.setEditorState = setEditorState
       store.getReadOnly = getReadOnly
