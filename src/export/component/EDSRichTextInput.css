@@ -1,0 +1,40 @@
+.DraftEditor {
+  background-color: #fff;
+  padding: 14px 12px 50px 12px;
+}
+
+.DraftEditor-editorContainer .public-DraftEditor-content {
+  min-height: 100px;
+}
+
+.RichEditor-styleButton {
+  color: #999;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 2px 0;
+  display: inline-block;
+}
+
+.RichEditor-activeButton {
+  color: #5890ff;
+  font-weight: 500;
+}
+
+.RichEditor-pre {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  font-size: 90% !important;
+  display: block !important;
+  font-size: 90% !important;
+  color: #212529 !important;
+  border: 1px solid #DDD !important;
+  background: #EEE !important;
+  padding: 8px !important;
+  border-radius: 5px !important;
+  margin: 0 !important;
+}
+
+.RichEditor-pre code {
+  color: inherit !important;
+  word-break: normal !important;
+  white-space: pre-wrap !important;
+}
