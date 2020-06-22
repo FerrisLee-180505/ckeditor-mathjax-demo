@@ -1,3 +1,3 @@
-import RichInput from './component/RichInput'
+import EDSRichTextInput from './component/EDSRichTextInput'
 
-export default RichInput
+export default EDSRichTextInput

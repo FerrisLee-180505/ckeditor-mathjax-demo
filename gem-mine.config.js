@@ -5,5 +5,6 @@ module.exports = {
    */
   css: {
     extract: false
-  }
+  },
+  showDevEntry: false
 }
