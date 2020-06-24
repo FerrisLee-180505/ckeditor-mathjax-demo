@@ -6,7 +6,7 @@ import EDSRichTextInput from './export'
 import { mentions, hashtag } from './datas'
 
 
-const initData = 'this is a **apple** and[edmodo](http://new.edmodo.com),[math]a^2=1[/math]and[math]a^3=1[/math]and[math]a^4=1[/math]todo'
+const initData = 'this is a **apple** and[edmodo](http://new.edmodo.com),[math]a^2=1[/math]and[math]a^3=1[/math]and[math]a^4=1[/math]todo #face'
 class App extends React.Component {
   constructor(props) {
     super(props)

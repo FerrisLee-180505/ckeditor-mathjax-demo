@@ -38,3 +38,8 @@
   word-break: normal !important;
   white-space: pre-wrap !important;
 }
+
+.HashTag-item {
+  color: #1CA782;
+  font-family: cursive;
+}

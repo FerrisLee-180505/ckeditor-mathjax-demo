@@ -67,7 +67,11 @@ const toggleInlineStyleArray = ['BOLD', 'ITALIC', 'UNDERLINE', 'STRIKETHROUGH']
 
 const mathjaxPlugin = createMathjaxPlugin()
 const edmodoPlugin = createEdmodoPlugin()
-const hashtagPlugin = createHashtagPlugin()
+const hashtagPlugin = createHashtagPlugin({
+  theme: {
+    hashtag:'HashTag-item'
+  }
+})
 const plugins = [
   mathjaxPlugin,
   edmodoPlugin,
@@ -140,7 +144,9 @@ class EDSRichTextInput extends Component {
       mentionFilterValue: ''
     }
 
-    this.mentionPlugin = createMentionPlugin()
+    this.mentionPlugin = createMentionPlugin({
+      mentionPrefix: '@'
+    })
   }
 
   componentDidUpdate() {
@@ -407,7 +413,6 @@ class EDSRichTextInput extends Component {
         disabled: currentBlockType === DraftjsBlockConstants.CODE_BLOCK && toggleInlineStyleArray.includes(style)
       }
     })
-    console.log('this.state=', this.state, this.props)
 
     const displayMentions = defaultSuggestionsFilter(mentionFilterValue, mentions)
     return (
