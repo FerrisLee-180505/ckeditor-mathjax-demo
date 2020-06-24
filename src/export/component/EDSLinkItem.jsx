@@ -14,7 +14,6 @@ const LinkItem = (props) => {
   const { onEdit, onRemove, decoratedText, blockKey, entityKey } = props
   const { url } = props.contentState.getEntity(props.entityKey).getData()
   const id = `Tooltip-${blockKey}-${entityKey}`
-  console.log('LinkItem render=')
   return (
     <>
       <a href={url} id={id}>
@@ -22,7 +21,7 @@ const LinkItem = (props) => {
       </a>
 
       <UncontrolledTooltip key={id} className="RichEditor-link-tooltip" placement="top" target={id} trigger="click">
-        <p>
+        <p className="RichEditor-link-tooltip-content">
           <span onClick={() => { window.open(url) }} title={url} className="RichEditor-url">{url}</span>
           <span className="RichEditor-split">|</span>
           <span className="RichEditor-btn" onClick={() => onEdit({ decoratedText, url })}>

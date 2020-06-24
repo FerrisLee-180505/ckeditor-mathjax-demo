@@ -1,20 +1,22 @@
+.RichEditor-link-tooltip-content {
+  margin-bottom: 0;
+}
+
 .RichEditor-link-tooltip .tooltip-inner {
   max-width: none;
 }
 
 .RichEditor-link-tooltip .RichEditor-url {
   cursor: pointer;
-  color: color(gray, 7);
   max-width: 100px;
   overflow: hidden;
   display: inline-block;
   white-space: nowrap;
   text-overflow: ellipsis;
-  vertical-align: middle;
+  vertical-align: bottom;
 }
 
 .RichEditor-link-tooltip .RichEditor-split {
-  color: color(gray, 40);
   margin: 0 5px;
 }
 
