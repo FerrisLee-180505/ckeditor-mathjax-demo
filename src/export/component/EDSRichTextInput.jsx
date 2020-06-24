@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 // === Utils === //
 import { isEmpty, get, noop, trim } from 'lodash'
 import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js'
+import createMentionPlugin,{ defaultSuggestionsFilter } from 'draft-js-mention-plugin'
 import { getCurrentBlock, addNewLineWithoutStyle, getSelectionEntity, findLinkEntities, getEntityRange, getSelectionText } from '../utils/DraftJSUtil'
 
 // === Plugins === //
@@ -15,8 +16,9 @@ import createEdmodoPlugin from '../plugins/draft-js-edmodo-plugin/src/index'
 import MarkdownEdmodoMathjax from '../plugins/markdown-edmodo-mathjax/index'
 
 // === Styles === //
-import './EDSRichTextInput.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'draft-js-mention-plugin/lib/plugin.css'
+import './EDSRichTextInput.css'
 
 // === Components === //
 import EDSRichTextInputToolbar from './EDSRichTextInputToolbar'
@@ -79,14 +81,11 @@ const options = {
   entityItems: {
     INLINETEX: {
       open: function (entity) {
-        console.log('entity start=', entity)
         if (!get(entity, 'data.teX', '')) return ''
         return '[math]' + trim(entity.data.teX)
       },
 
       close: function (entity) {
-
-        console.log('entity end=', entity)
         if (!get(entity, 'data.teX', '')) return ''
         return '[/math]'
       }
@@ -115,6 +114,7 @@ class EDSRichTextInput extends Component {
     this.getBlockStyle = this.getBlockStyle.bind(this)
     this.handleAddLink = this.handleAddLink.bind(this)
     this.handleEditLink = this.handleEditLink.bind(this)
+    this.onSearchChange = this.onSearchChange.bind(this)
     this.blockRendererFn = this.blockRendererFn.bind(this)
     this.handlePastedText = this.handlePastedText.bind(this)
     this.handleKeyCommand = this.handleKeyCommand.bind(this)
@@ -132,8 +132,11 @@ class EDSRichTextInput extends Component {
       addLinkUrl: '',
       markdownValue: value,
       currentEditorState,
-      currentEntity: getSelectionEntity(currentEditorState)
+      currentEntity: getSelectionEntity(currentEditorState),
+      mentionFilterValue: ''
     }
+
+    this.mentionPlugin = createMentionPlugin()
   }
 
   componentDidUpdate() {
@@ -238,7 +241,6 @@ class EDSRichTextInput extends Component {
   onChange(nextEditorState) {
     const { onChange } = this.props
     const markdownValue = draftToMarkdown(convertToRaw(nextEditorState.getCurrentContent()), options)
-    console.log('markdownValue=', markdownValue)
     this.setState({
       markdownValue,
       currentEditorState: nextEditorState,
@@ -295,13 +297,16 @@ class EDSRichTextInput extends Component {
     if (nextCommand) {
       return nextCommand
     }
+    nextCommand = this.mentionPlugin.keyBindingFn(e, { getEditorState: () => currentEditorState })
+    if (nextCommand) {
+      return nextCommand
+    }
 
     return nextCommand
   }
 
   handleAddLink(linkTitle, linkTarget) {
-    const { currentEditorState } = this.state
-    const { currentEntity } = this.state
+    const { currentEditorState, currentEntity } = this.state
     let selection = currentEditorState.getSelection()
 
     if (currentEntity) {
@@ -372,9 +377,17 @@ class EDSRichTextInput extends Component {
     }
     return 'not-handled'
   }
+
+  onSearchChange = ({ value }) => {
+    this.setState({
+      mentionFilterValue: value
+    })
+  };
+
   render() {
-    const { isAddLinkModalOpen, addLinkText, addLinkUrl, currentEditorState: editorState } = this.state
-    const { toolbarItems } = this.props
+    const { isAddLinkModalOpen, addLinkText, addLinkUrl, currentEditorState: editorState, mentionFilterValue } = this.state
+    const { toolbarItems, mentions } = this.props
+    const { MentionSuggestions } = this.mentionPlugin
     const hasFocus = editorState.getSelection().getHasFocus()
     const currentBlockType = RichUtils.getCurrentBlockType(editorState)
     const nextToolbarItems = toolbarItems.map(item => {
@@ -390,6 +403,9 @@ class EDSRichTextInput extends Component {
         disabled: currentBlockType === DraftjsBlockConstants.CODE_BLOCK && toggleInlineStyleArray.includes(style)
       }
     })
+    console.log('this.state=', this.state, this.props)
+
+    const displayMentions = defaultSuggestionsFilter(mentionFilterValue, mentions)
     return (
       <div className="DraftEditor">
         <EDSRichTextInputToolbar
@@ -415,10 +431,16 @@ class EDSRichTextInput extends Component {
               }
             }
           ]}
-          plugins={plugins}
+          plugins={[...plugins, this.mentionPlugin]}
           handleKeyCommand={this.handleKeyCommand}
           keyBindingFn={this.mapKeyToEditorCommand}
           handlePastedText={this.handlePastedText}
+        />
+
+        <MentionSuggestions
+          onSearchChange={this.onSearchChange}
+          suggestions={displayMentions}
+          onAddMention={this.onAddMention}
         />
         <AddLinkModal
           defaultText={addLinkText}
