@@ -8,6 +8,7 @@ import PropTypes from 'prop-types'
 import { isEmpty, get, noop, trim } from 'lodash'
 import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js'
 import createMentionPlugin,{ defaultSuggestionsFilter } from 'draft-js-mention-plugin'
+import createHashtagPlugin from 'draft-js-hashtag-plugin'
 import { getCurrentBlock, addNewLineWithoutStyle, getSelectionEntity, findLinkEntities, getEntityRange, getSelectionText } from '../utils/DraftJSUtil'
 
 // === Plugins === //
@@ -18,6 +19,7 @@ import MarkdownEdmodoMathjax from '../plugins/markdown-edmodo-mathjax/index'
 // === Styles === //
 import 'bootstrap/dist/css/bootstrap.css'
 import 'draft-js-mention-plugin/lib/plugin.css'
+import 'draft-js-hashtag-plugin/lib/plugin.css'
 import './EDSRichTextInput.css'
 
 // === Components === //
@@ -65,9 +67,11 @@ const toggleInlineStyleArray = ['BOLD', 'ITALIC', 'UNDERLINE', 'STRIKETHROUGH']
 
 const mathjaxPlugin = createMathjaxPlugin()
 const edmodoPlugin = createEdmodoPlugin()
+const hashtagPlugin = createHashtagPlugin()
 const plugins = [
   mathjaxPlugin,
-  edmodoPlugin
+  edmodoPlugin,
+  hashtagPlugin
 ]
 
 const styleMap = {
