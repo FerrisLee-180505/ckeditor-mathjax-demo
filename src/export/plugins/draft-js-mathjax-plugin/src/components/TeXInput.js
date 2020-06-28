@@ -325,6 +325,7 @@ class TeXInput extends React.Component {
               width: 984
             }}
           >
+            {/* I'm using the iFrame here, so you can choose to react components and refer to the code public/lib/kityformula */}
             <iframe
               ref={(iframeDom) => { this.iframeDom = iframeDom }}
               title="kity-formular-plugin"
