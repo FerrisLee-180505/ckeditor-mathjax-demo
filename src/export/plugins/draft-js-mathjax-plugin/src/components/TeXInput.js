@@ -1,6 +1,9 @@
 import React from 'react'
 import { Modal, Button, ModalBody, ModalFooter } from 'reactstrap'
 
+// === Components === //
+import MathjaxEditor from './../../../draftjs-js-mathjax-editor-plugin'
+
 const _isAlpha = key => key.length === 1 &&
   /[a-z]/.test(key.toLowerCase())
 
@@ -102,26 +105,17 @@ class TeXInput extends React.Component {
     this.onBlur = () => this.props.finishEdit()
 
     this.handleKey = this.handleKey.bind(this)
+    this.onMathjaxChange = this.onMathjaxChange.bind(this)
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('message', this.callback)
-  }
-  componentDidMount() {
-    setTimeout(() => {
-      const { start, end } = this.state
-      if (this.teXinput) {
-        this.teXinput.focus()
-        this.teXinput.setSelectionRange(start, end)
-      }
-    }, 0)
-    setTimeout(() => {
-      this.iframeDom.contentWindow.postMessage(JSON.stringify({
-        type: 'init-data',
-        text: this.props.teX
-      }), '*')
-      window.addEventListener('message', this.callback, false)
-    }, 1000)
+  onMathjaxChange(text) {
+    const nextText = text.slice(2, text.length - 2)
+    this.props.onChange({
+      teX: nextText
+    })
+    this.setState({
+      start: nextText.length, end: nextText.length
+    })
   }
   callback = (event) => {
     const { type, text } = JSON.parse(event.data)
@@ -164,81 +158,81 @@ class TeXInput extends React.Component {
     }
 
     switch (key) {
-    case '$': {
-      if (inlineMode) {
-        evt.preventDefault()
-        onChange({ displaystyle: !displaystyle })
+      case '$': {
+        if (inlineMode) {
+          evt.preventDefault()
+          onChange({ displaystyle: !displaystyle })
+        }
+        break
       }
-      break
-    }
-    case 'Escape': {
-      evt.preventDefault()
-      finishEdit(1)
-      break
-    }
-    case 'ArrowLeft': {
-      const atBegin = collapsed && end === 0
-      if (atBegin) {
-        evt.preventDefault()
-        finishEdit(0)
-      }
-      break
-    }
-    case 'ArrowRight': {
-      const atEnd = collapsed && start === teX.length
-      if (atEnd) {
+      case 'Escape': {
         evt.preventDefault()
         finishEdit(1)
+        break
       }
-      break
-    }
-    default:
-      if (
-        Object.prototype.hasOwnProperty
-          .call(closeDelim, key)
-      ) {
-        // insertion d'un délimiteur
-        evt.preventDefault()
-        this._insertText(key + closeDelim[key], -1)
-      } else if (
-        !cplDisable && ((
-          _isAlpha(key) &&
+      case 'ArrowLeft': {
+        const atBegin = collapsed && end === 0
+        if (atBegin) {
+          evt.preventDefault()
+          finishEdit(0)
+        }
+        break
+      }
+      case 'ArrowRight': {
+        const atEnd = collapsed && start === teX.length
+        if (atEnd) {
+          evt.preventDefault()
+          finishEdit(1)
+        }
+        break
+      }
+      default:
+        if (
+          Object.prototype.hasOwnProperty
+            .call(closeDelim, key)
+        ) {
+          // insertion d'un délimiteur
+          evt.preventDefault()
+          this._insertText(key + closeDelim[key], -1)
+        } else if (
+          !cplDisable && ((
+            _isAlpha(key) &&
             completion.status === 'auto'
-        ) || (
-          key === 'Tab' &&
+          ) || (
+              key === 'Tab' &&
               this.completionList.length > 1
-        ) || (
-          completion.status === 'manual' &&
+            ) || (
+              completion.status === 'manual' &&
               evt.ctrlKey &&
               key === ' '
-        ))
-      ) {
-        // completion
-        this._handleCompletion(evt)
-      } else if (key === 'Tab') {
-        // gestion de l'indentation
-        const lines = teX.split('\n')
-        if (inlineMode || lines.length <= 1) {
-          // pas d'indentation dans ce cas
-          evt.preventDefault()
-          finishEdit(evt.shiftKey ? 0 : 1)
-        } else {
-          const {
-            text,
-            start: ns,
-            end: ne
-          } = indent(
-            { text: teX, start, end },
-            evt.shiftKey,
-          )
-          evt.preventDefault()
-          onChange({ teX: text })
-          setTimeout(() => this.setState({
-            start: ns,
-            end: ne
-          }), 0)
+            ))
+        ) {
+          // completion
+          this._handleCompletion(evt)
+        } else if (key === 'Tab') {
+          // gestion de l'indentation
+          const lines = teX.split('\n')
+          if (inlineMode || lines.length <= 1) {
+            // pas d'indentation dans ce cas
+            evt.preventDefault()
+            finishEdit(evt.shiftKey ? 0 : 1)
+          } else {
+            const {
+              text,
+              start: ns,
+              end: ne
+            } = indent(
+              { text: teX, start, end },
+              evt.shiftKey,
+            )
+            evt.preventDefault()
+            onChange({ teX: text })
+            setTimeout(() => this.setState({
+              start: ns,
+              end: ne
+            }), 0)
+          }
         }
-      }
     }
   }
 
@@ -293,66 +287,26 @@ class TeXInput extends React.Component {
   }
 
   render() {
-    const { teX, className, style } = this.props
-    const teXArray = teX.split('\n')
-    const rows = teXArray.length
-    const cols = teXArray
-      .map(tl => tl.length)
-      .reduce((acc, size) => (size > acc ? size : acc), 1)
-    const old = false
-    return old ? (
-      <textarea
-        rows={rows}
-        cols={cols}
-        className={className}
-        value={teX}
-        onChange={this._onChange}
-        onSelect={this._onSelect}
-        onBlur={this.onBlur}
-        onKeyDown={this.handleKey}
-        ref={(teXinput) => { this.teXinput = teXinput }}
-        style={style}
-      />
-    )
-      : (
-        <Modal
-          isOpen
-          size="lg"
-          style={{maxWidth: '986px', width: '90%'}}
+    const { teX } = this.props
+    return (
+      <Modal
+        isOpen
+        size="lg"
+        style={{ maxWidth: '986px', width: '90%' }}
+      >
+        <ModalBody
+          style={{ width: 984 }}
         >
-          <ModalBody
-            style={{
-              width: 984
-            }}
-          >
-            {/* I'm using the iFrame here, so you can choose to react components and refer to the code public/lib/kityformula */}
-            <iframe
-              ref={(iframeDom) => { this.iframeDom = iframeDom }}
-              title="kity-formular-plugin"
-              style={{ width: '100%', height: '800px' }}
-              // kityformular 部署的远程 cdn 地址
-              src="//gcdncs.101.com/v0.1/static/learningcar/CDN/lib/kityformula/dialogs/kityformula-mathjax.html?serviceName=learningcar"
-              // 本地调试的 kityformular
-              // src="lib/kityformula/kityformula-mathjax.html"
-              frameBorder="0"
-            />
-          </ModalBody>
-          <ModalFooter>
-
-            <p style={{ textAlign: 'right' }}>
-              <Button
-                style={{ marginRight: 10 }}
-                onClick={this.onBlur}
-              >
-                Ok
-              </Button>
-              <Button>
-                Cancel
-              </Button>
-            </p>
-          </ModalFooter>
-        </Modal>
-      )
+          <MathjaxEditor value={teX} onChange={this.caonMathjaxChangellback} />
+        </ModalBody>
+        <ModalFooter>
+          <p style={{ textAlign: 'right' }}>
+            <Button style={{ marginRight: 10 }} onClick={this.onBlur}>Ok</Button>
+            <Button>Cancel</Button>
+          </p>
+        </ModalFooter>
+      </Modal>
+    )
   }
 }
 
