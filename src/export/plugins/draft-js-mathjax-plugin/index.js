@@ -6,12 +6,12 @@ import { EditorState, Modifier } from 'draft-js'
 import {
   myKeyBindingFn,
   findInlineTeXEntities
-} from './utils'
-import loadMathJax from './mathjax/loadMathJax'
-import initCompletion from './mathjax/completion'
-import insertTeX from './modifiers/insertTeX'
-import InlineTeX from './components/InlineTeX'
-import TeXBlock from './components/TeXBlock'
+} from './src/utils'
+import loadMathJax from './src/mathjax/loadMathJax'
+import initCompletion from './src/mathjax/completion'
+import insertTeX from './src/modifiers/insertTeX'
+import InlineTeX from './src/components/InlineTeX'
+import TeXBlock from './src/components/TeXBlock'
 
 const defaultConfig = {
   macros: {},

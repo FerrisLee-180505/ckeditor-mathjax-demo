@@ -7,13 +7,13 @@ import PropTypes from 'prop-types'
 // === Utils === //
 import { isEmpty, get, noop, trim } from 'lodash'
 import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js'
-import createMentionPlugin,{ defaultSuggestionsFilter } from 'draft-js-mention-plugin'
+import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin'
 import createHashtagPlugin from 'draft-js-hashtag-plugin'
 import { getCurrentBlock, addNewLineWithoutStyle, getSelectionEntity, findLinkEntities, getEntityRange, getSelectionText } from '../utils/DraftJSUtil'
 
 // === Plugins === //
-import createMathjaxPlugin from '../plugins/draft-js-mathjax-plugin/src/index'
-import createEdmodoPlugin from '../plugins/draft-js-edmodo-plugin/src/index'
+import createMathjaxPlugin from '../plugins/draft-js-mathjax-plugin/index'
+import createEdmodoPlugin from '../plugins/draft-js-edmodo-plugin/index'
 import MarkdownEdmodoMathjax from '../plugins/markdown-edmodo-mathjax/index'
 
 // === Styles === //
@@ -69,7 +69,7 @@ const mathjaxPlugin = createMathjaxPlugin()
 const edmodoPlugin = createEdmodoPlugin()
 const hashtagPlugin = createHashtagPlugin({
   theme: {
-    hashtag:'HashTag-item'
+    hashtag: 'HashTag-item'
   }
 })
 const plugins = [

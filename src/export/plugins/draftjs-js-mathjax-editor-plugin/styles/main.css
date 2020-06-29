@@ -1,4 +1,4 @@
-#kfEditorContainer {
+.kf-editor {
   width: 952px;
   height: 650px;
 }
@@ -19,4 +19,6 @@
 
 .kf-editor-input-record-display-area-container {
   display: none;
+  min-width: 0;
+  width: 0;
 }

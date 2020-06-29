@@ -2,12 +2,12 @@ import { EditorState, Modifier, RichUtils } from 'draft-js'
 
 // === Constants === //
 import { toUpper, endsWith } from 'lodash'
-import DraftjsBlockConstants from './../../../constants/DraftjsBlockConstants'
-import DraftjsCommandConstants from './../../../constants/DraftjsCommandConstants'
-import DraftjsEditorChangeTypeConstants from './../../../constants/DraftjsEditorChangeTypeConstants'
+import DraftjsBlockConstants from '../../constants/DraftjsBlockConstants'
+import DraftjsCommandConstants from '../../constants/DraftjsCommandConstants'
+import DraftjsEditorChangeTypeConstants from '../../constants/DraftjsEditorChangeTypeConstants'
 
 // === Utils === //
-import { getSelectionEntity, addNewLineWithoutStyle, isFocusOnEndOfBlock, getCurrentBlock } from './../../../utils/DraftJSUtil'
+import { getSelectionEntity, addNewLineWithoutStyle, isFocusOnEndOfBlock, getCurrentBlock } from '../../utils/DraftJSUtil'
 
 const toggleInlineStyleArray = ['BOLD', 'ITALIC', 'UNDERLINE', 'STRIKETHROUGH']
 
