@@ -1,0 +1,22 @@
+#kfEditorContainer {
+  width: 952px;
+  height: 650px;
+}
+
+#preview-panel-wrap {
+  width: 952px;
+  padding: 5px;
+}
+
+#preview-panel {
+  background-color: white;
+  border: 1px solid #ddd;
+  width: 942px;
+  height: 100px;
+  padding: 3px;
+  overflow: auto;
+}
+
+.kf-editor-input-record-display-area-container {
+  display: none;
+}
