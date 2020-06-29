@@ -14,6 +14,27 @@
   <script
     src="//cdncs.101.com/v0.1/static/dist_learningobjectives_editor/mubiao-static/lib/MathJax/MathJax.js?config=TeX-AMS-MML_SVG-full,local/local">
   </script>
+  <script>
+    var getQueryString = window.getQueryString = function () {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i')
+      var r = window.location.search.substr(1).match(reg)
+      if (r != null) return decodeURI(r[2])
+      return null
+    }
+    var localeArray = window.localeArray = ['zh-cn', 'en-us']
+    var localeMach = window.localeMach = function (locale) {
+      if (localeArray.indexOf(locale) !== -1) {
+        return locale
+      } else {
+        return localeArray[0]
+      }
+    }
+
+    window.locale = getQueryString('locale')
+    if (!window.locale) {
+      window.locale = 'zh-cn'
+    }
+  </script>
 </head>
 
 <body>

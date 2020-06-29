@@ -50,13 +50,15 @@ class TeXInput extends React.Component {
     super(props)
     const {
       onChange,
-      caretPosFn
+      caretPosFn,
+      teX
     } = props
 
     const pos = caretPosFn()
     this.state = {
       start: pos,
-      end: pos
+      end: pos,
+      teX
     }
 
     this.completionList = []
@@ -105,6 +107,7 @@ class TeXInput extends React.Component {
     this.onBlur = () => this.props.finishEdit()
 
     this.handleKey = this.handleKey.bind(this)
+    this.onCancel = this.onCancel.bind(this)
     this.onMathjaxChange = this.onMathjaxChange.bind(this)
   }
 
@@ -117,17 +120,12 @@ class TeXInput extends React.Component {
       start: nextText.length, end: nextText.length
     })
   }
-  callback = (event) => {
-    const { type, text } = JSON.parse(event.data)
-    if (type === 'return-current-latex') {
-      const nextText = text.slice(2, text.length - 2)
-      this.props.onChange({
-        teX: nextText
-      })
-      this.setState({
-        start: nextText.length, end: nextText.length
-      })
-    }
+
+  onCancel() {
+    const { teX } = this.state
+    this.props.onChange({
+      teX
+    }, this.onBlur)
   }
 
   shouldComponentUpdate(nextProps) {
@@ -289,23 +287,25 @@ class TeXInput extends React.Component {
   render() {
     const { teX } = this.props
     return (
-      <Modal
-        isOpen
-        size="lg"
-        style={{ maxWidth: '986px', width: '90%' }}
+      <div style={{
+        backgroundColor: '#fff',
+        padding: 10,
+        border: '1px solid #ddd',
+        borderRadius: 4,
+        width: 972,
+        position: 'fixed',
+        transform: 'translate(-50%, -50%)',
+        left: '50%',
+        top: '50%',
+        zIndex: 999
+      }}
       >
-        <ModalBody
-          style={{ width: 984 }}
-        >
-          <MathjaxEditor value={teX} onChange={this.caonMathjaxChangellback} />
-        </ModalBody>
-        <ModalFooter>
-          <p style={{ textAlign: 'right' }}>
-            <Button style={{ marginRight: 10 }} onClick={this.onBlur}>Ok</Button>
-            <Button>Cancel</Button>
-          </p>
-        </ModalFooter>
-      </Modal>
+        <MathjaxEditor value={teX} onChange={this.onMathjaxChange} />
+        <p style={{ textAlign: 'right', marginBottom: 0, padding: '10px 0' }}>
+          <Button style={{ marginRight: 10 }} onClick={this.onBlur}>Ok</Button>
+          <Button onClick={this.onCancel}>Cancel</Button>
+        </p>
+      </div>
     )
   }
 }

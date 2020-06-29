@@ -4,21 +4,47 @@
 }
 
 #preview-panel-wrap {
-  width: 952px;
+  width: 892px;
   padding: 5px;
+  display: block;
+  margin-inline-start: 0.75em;
+  margin-inline-end: 0.75em;
+  padding-block-start: 0.75em;
+  padding-inline-start: 0.75em;
+  padding-inline-end: 0.75em;
+  padding-block-end: 0.75em;
+  min-inline-size: min-content;
+  border-width: 2px;
+  border-style: groove;
+  border-image: initial;
+}
+
+#preview-panel-wrap legend {
+  display: block;
+  padding-inline-start: 2px;
+  padding-inline-end: 2px;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  margin-bottom: 0;
+  color: #fff;
 }
 
 #preview-panel {
-  background-color: white;
-  border: 1px solid #ddd;
-  width: 942px;
-  height: 100px;
-  padding: 3px;
   overflow: auto;
+  background-color: white;
+  width: 898px;
+  height: 100px;
+  padding: 7px;
+  overflow: auto;
+}
+
+.kfEditorWrapper {
+  height: 826px;
+  background: #545b62;
 }
 
 .kf-editor-input-record-display-area-container {
   display: none;
-  min-width: 0;
-  width: 0;
 }
