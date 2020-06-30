@@ -1,0 +1,1 @@
+> 该款插件内含 Mathjax 公式编辑组件（draftjs-js-mathjax-editor-plugin），嵌入 Draft-js 用于编辑器内公式的嵌入和编辑，作为文本化的公式和 Draftjs 数据模型之间的转化角色。 

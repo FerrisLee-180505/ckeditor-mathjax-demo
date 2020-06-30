@@ -1,31 +1,27 @@
-# 带路由/数据流的组件脚手架
+# 来源
+> 该项目主要服务于 Edmodo web-app项目，用于富文本能力的技术预研，目前实现包括以下内容
 
-> 此文件会复制到引用项目中，作为面向用户的`README`, 请认真填写
+# 阶段任务
 
-## Example
+Phase 1:
+  * [x] 基础富文本能力，标题/加粗/斜体/中划线/有序列表/无序列表/代码块。
+  * [x] 富文本内容按照 Markdown 格式输出。
+  * [x] 插入/取消链接能力
+  
+Phase 2:
+  * [x] Mention 能力
+  * [x] Hashtag 能力
+   
+Phase 3:
+  * [x] MathJax 公式插入/编辑能力
 
-```js
-import getPageRoute from 'demoComponent'
+# 启动
+- npm install 
+- npm run start
 
-export default {
-  path: '/demox',
-  // 子路由
-  sub: {
-    ...pageRoute({
-      relativePath: 'demox',
-      modelPrefix: 'xxx'
-    })
-  }
-}
+# 语法规则
+> Edmodo 关于富文本的表述规则由标准的 markdown 语法+自定义语法组成。自定义语法用于进行公式存储和表述，形如
+
 ```
-
-## API
-
-### getPageRoute
-
-获取路由配置，直接挂载到路由中
-
-|Name|Type|Default|Description|
-|:--:|:--:|:-----:|:----------|
-|[**`option.relativePath`**]|`{string}`| '' |路由的相对路径|
-|[**`option.modelPrefix`**]|`{string}`| '' |store前缀，主要用途防止命名冲突|
+[math]a^2=1[/math]
+```

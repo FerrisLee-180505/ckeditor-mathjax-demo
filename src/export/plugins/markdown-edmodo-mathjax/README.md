@@ -1,0 +1,1 @@
+> 该款插件服务于 markdown-draft-js 库，用于自定义 markdown 语法的解析。详细见 /README.md#语法规则
