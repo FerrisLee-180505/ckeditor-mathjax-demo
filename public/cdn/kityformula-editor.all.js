@@ -8113,8 +8113,7 @@
           }
         }
       }
-      // if (locale.toLowerCase() != 'zh-cn') {
-      var newP = JSON.stringify(_.extend(p, pictureConfig[localeMach(locale)]))
+      var newP = JSON.stringify(p)
       newP = newP.replace('加热', languageObject['加热'])
       newP = newP.replace('高温', languageObject['高温'])
       newP = newP.replace('水浴', languageObject['水浴'])
@@ -8126,8 +8125,6 @@
       newP = newP.replace('催化剂', languageObject['催化剂'])
       newP = newP.replace('浓硫酸', languageObject['浓硫酸'])
       newP = newP.replace('电解', languageObject['电解'])
-      // }
-      // debugger
       return JSON.parse(newP)
     }
   }

@@ -7,8 +7,7 @@ import { mentions, hashtag } from './datas'
 
 
 const initData = `# Fibonacci Sequence
-In mathematics, the **Fibonacci numbers**, commonly denoted Fn, form a sequence, called the **Fibonacci sequence**, such that each number is the sum of the two preceding ones, starting from 0 and 1
-This post is about #computerenginerring and #algorithms. Please remember that the #1 thing to remember is to always test your code
+In mathematics, the **Fibonacci numbers**, commonly denoted Fn, form a sequence, called the **Fibonacci sequence**.
 
 this \\*\\*not markdown\\*\\* and \\*also not markdown\\*
 
@@ -58,7 +57,7 @@ class App extends React.Component {
           value={value}
           onChange={this.onChange}
         />
-        <p>
+        <div>
           <strong>MARKDOWN - HTML(Best to use EDSRichTextRenderer):</strong>
           <div style={{ backgroundColor: 'white', borderRadius: '4px', marginTop: '1rem', whiteSpace: 'pre', padding: '4px' }}>
             <Markdown source={value} className="eds-rich-text-renderer" />
@@ -68,7 +67,7 @@ class App extends React.Component {
           <div style={{ backgroundColor: 'white', borderRadius: '4px', marginTop: '1rem', whiteSpace: 'pre-line', padding: '4px' }}>
             {value}
           </div>
-        </p>
+        </div>
       </div>
     )
   }
