@@ -7,10 +7,6 @@ const commonEdit = {
   background: 'yellow'
 }
 
-const commonPreview = {
-  visibility: 'hidden'
-}
-
 const commonRendered = {
   cursor: 'pointer'
 }
@@ -25,7 +21,6 @@ export default {
 
     },
     preview: {
-      ...commonPreview,
       top: '200%' /* se réfère à la hauteur de ligne */
     },
     rendered: {
@@ -40,7 +35,6 @@ export default {
       padding: '14px'
     },
     preview: {
-      ...commonPreview,
       top: 'calc(100%+1em)'
     },
     rendered: {

@@ -85,9 +85,6 @@ const createEdmodoPlugin = () => {
         )
       }
       return editorState
-    },
-    blockRendererFn: function (block) {
-      // console.log('edmodo blockRendererFn', block.toJS())
     }
   }
 }

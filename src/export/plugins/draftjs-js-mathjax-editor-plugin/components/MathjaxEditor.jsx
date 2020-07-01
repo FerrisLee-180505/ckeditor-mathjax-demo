@@ -28,7 +28,7 @@ class MathjaxEditor extends Component {
     this.loadMathJax = this.loadMathJax.bind(this)
   }
   componentDidMount() {
-    const { value, onChange } = this.props
+    const { value } = this.props
     this.factory = kf.EditorFactory.create(this.instance, {
       render: {
         fontsize: 40
@@ -39,26 +39,27 @@ class MathjaxEditor extends Component {
     })
     const that = this
     this.factory.ready(function () {
-      console.error('ready')
       that.kityformulaInstance = this
       that.loadMathJax(value || '\\placeholder')
     })
 
-    this.factory.preview(function (latex) {
-      if (latex.trim() === '\\placeholder') { //只有占位符时,清空预览区域
-        latex = ''
-      } else {
-        latex = '\\(' + latex + '\\)'
-      }
-      onChange(latex)
-      $('#preview-panel').text(latex)
-      MathJax.Hub.Queue(['Typeset', MathJax.Hub])
-    })
+    this.factory.preview(this.preview)
+  }
+
+  preview = (latex) => {
+    const { onChange } = this.props
+    if (latex.trim() === '\\placeholder') { //只有占位符时,清空预览区域
+      latex = ''
+    } else {
+      latex = '\\(' + latex + '\\)'
+    }
+    onChange(latex)
+    $('#preview-panel').text(latex)
+    MathJax.Hub.Queue(['Typeset', MathJax.Hub])
   }
   componentWillUnmount() {
     this.factory = null
     this.instance = null
-    this.factory = null
     this.kityformulaInstance = null
   }
   loadMathJax(latex) {

@@ -16,14 +16,18 @@ export default class InlineTeX extends Component {
     this._update = (key) => {
       if (this.state.editMode) return
       const store = this.props.getStore()
-      this.setState({ editMode: true }, () => {
+      this.setState({ editMode: true, entityKey: key }, () => {
         store.setReadOnly(true)
         if (key) { store.teXToUpdate = {} }
       })
     }
 
     this.onChange = (newState, cb = () => { }) => {
-      this.setState(newState, cb)
+      const { entityKey } = this.state
+      if (newState.entityKey === entityKey) {
+        const { teX } = newState
+        this.setState({ teX }, cb)
+      }
     }
 
     this.getCaretPos = () => {
@@ -33,7 +37,7 @@ export default class InlineTeX extends Component {
     }
 
     this.save = (after) => {
-      this.setState({ editMode: false }, () => {
+      this.setState({ editMode: false, entityKey: '' }, () => {
         const store = this.props.getStore()
         const { teX, displaystyle } = this.state
         const { entityKey, offsetKey, children } = this.props
@@ -53,12 +57,6 @@ export default class InlineTeX extends Component {
             ...React.Children.map(children, c => ({
               startPos: c.props.start
             }))[0]
-            // ...React.Children.map(children, (c) => {
-            //   debugger
-            //   return {
-            //     startPos: c.props.start,
-            //   }
-            // })[0],
           }),
         )
       })
@@ -70,7 +68,7 @@ export default class InlineTeX extends Component {
     const entity = contentState.getEntity(entityKey)
     const { teX, displaystyle } = entity.getData()
     // return entity.getData()
-    return { editMode: teX.length === 0, teX, displaystyle }
+    return { editMode: teX.length === 0, teX, displaystyle, entityKey }
   }
 
   componentWillMount() {
@@ -110,12 +108,14 @@ export default class InlineTeX extends Component {
 
   render() {
     const { editMode, teX, displaystyle } = this.state
-
+    const { entityKey } = this.props
     const completion = this.props.getStore().completion
+
     let input = null
     if (editMode) {
       input = (
         <TeXInput
+          entityKey={entityKey}
           onChange={this.onChange}
           teX={teX}
           displaystyle={displaystyle}
@@ -140,15 +140,10 @@ export default class InlineTeX extends Component {
 
     const style = styles[(editMode ? 'preview' : 'rendered')]
     return (
-      <span
-        style={{
-          position: editMode ?
-            'relative' : undefined
-        }}
-      >
+      <span>
         {input}
         <span
-          onMouseDown={() => this._update()}
+          onMouseDown={() => this._update(entityKey)}
           style={style}
           contentEditable={false}
         >

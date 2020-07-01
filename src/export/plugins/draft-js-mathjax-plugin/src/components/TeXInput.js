@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Button, ModalBody, ModalFooter } from 'reactstrap'
+import { Button } from 'reactstrap'
 
 // === Components === //
 import MathjaxEditor from './../../../draftjs-js-mathjax-editor-plugin'
@@ -112,12 +112,16 @@ class TeXInput extends React.Component {
   }
 
   onMathjaxChange(text) {
+    const { entityKey } = this.props
     const nextText = text.slice(2, text.length - 2)
     this.props.onChange({
-      teX: nextText
-    })
-    this.setState({
-      start: nextText.length, end: nextText.length
+      teX: nextText,
+      entityKey
+    }, () => {
+      const pos = this.props.caretPosFn()
+      this.setState({
+        start: pos, end: pos
+      })
     })
   }
 
