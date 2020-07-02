@@ -15,8 +15,8 @@ import './../styles/main.css'
 // === I18n === //
 import './../i18n/en/index'
 
-const { MathJax, $, kf, languageObject } = window
-$.getScript('/cdn/kityformula-editor.all.js')
+// === Hocs === //
+import WithScriptsLoading from './../hoc/WithScriptsLoading'
 
 class MathjaxEditor extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class MathjaxEditor extends Component {
   }
   componentDidMount() {
     const { value } = this.props
-    this.factory = kf.EditorFactory.create(this.instance, {
+    this.factory = window.kf.EditorFactory.create(this.instance, {
       render: {
         fontsize: 40
       },
@@ -55,7 +55,7 @@ class MathjaxEditor extends Component {
     }
     onChange(latex)
     $('#preview-panel').text(latex)
-    MathJax.Hub.Queue(['Typeset', MathJax.Hub])
+    window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub])
   }
   componentWillUnmount() {
     this.factory = null
@@ -73,7 +73,7 @@ class MathjaxEditor extends Component {
       <div className="kfEditorWrapper">
         <div ref={i => this.instance = i} className="kf-editor" />
         <fieldset id="preview-panel-wrap">
-          <legend>{languageObject['公式预览']}</legend>
+          <legend>{window.languageObject['公式预览']}</legend>
           <div id="preview-panel"></div>
         </fieldset>
       </div>
@@ -103,4 +103,10 @@ MathjaxEditor.defaultProps = {
 }
 
 
-export default MathjaxEditor
+
+export default WithScriptsLoading(MathjaxEditor, [
+  '/cdn/kitygraph.all.js',
+  '/cdn/kity-formula-render.all.js',
+  '/cdn/kity-formula-parser.all.js',
+  '/cdn/kityformula-editor.all.js'
+])
