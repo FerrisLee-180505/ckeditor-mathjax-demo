@@ -127,9 +127,8 @@ class TeXInput extends React.Component {
 
   onCancel() {
     const { teX } = this.state
-    this.props.onChange({
-      teX
-    }, this.onBlur)
+    this.props.onChange({ teX })
+    this.onBlur()
   }
 
   shouldComponentUpdate(nextProps) {

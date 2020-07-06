@@ -19,11 +19,16 @@ function WithScriptsLoading(Embed, libArray = []) {
         })
       })
     }
+    componentWillUnmount() {
+      this.setState({
+        isLoaded: false
+      })
+    }
 
     render() {
       const { isLoaded } = this.state
       //TODO: 这里如果有个loading效果就更好了
-      return isLoaded && <Embed {...this.props} />
+      return isLoaded ? <Embed {...this.props} /> : <div style={{ height: 500 }} />
     }
   }
 }
