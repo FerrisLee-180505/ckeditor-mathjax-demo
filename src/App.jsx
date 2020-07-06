@@ -10,6 +10,7 @@ import { mentions, hashtag } from './datas'
 
 // === Icons === //
 import BoldIcon from './export/icons/BoldIcon'
+import SplitIcon from './export/icons/SplitIcon'
 import CodeBlockIcon from './export/icons/CodeBlockIcon'
 import HeaderIcon from './export/icons/HeaderIcon'
 import ItalicIcon from './export/icons/ItalicIcon'
@@ -53,9 +54,12 @@ https://en.wikipedia.org/wiki/Fibonacci_number`
 
 const toolbarItems = [
   { label: <HeaderIcon />, style: 'header-one' },
+  { label: <SplitIcon />, style: '' },
   { label: <UnorderedListIcon />, style: 'unordered-list-item' },
   { label: <OrderedListIcon />, style: 'ordered-list-item' },
+  { label: <SplitIcon />, style: '' },
   { label: <CodeBlockIcon />, style: 'code-block' },
+  { label: <SplitIcon />, style: '' },
   { label: <BoldIcon />, style: 'BOLD' },
   { label: <ItalicIcon />, style: 'ITALIC' },
   { label: <UnderLineIcon />, style: 'UNDERLINE' },

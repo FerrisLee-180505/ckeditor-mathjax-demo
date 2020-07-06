@@ -1,20 +1,13 @@
-/* eslint-disable indent */
 import React, { Component } from 'react'
-import { Modifier, EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js'
 import Editor from 'draft-js-plugins-editor'
-import PropTypes from 'prop-types'
+import { Modifier, EditorState, RichUtils, convertFromRaw } from 'draft-js'
 
 // === Utils === //
-import { isEmpty, get, noop, trim } from 'lodash'
-import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js'
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin'
-import createHashtagPlugin from 'draft-js-hashtag-plugin'
+import classnames from 'classnames'
+import { isEmpty, get, pick, find } from 'lodash'
+import { defaultSuggestionsFilter } from 'draft-js-mention-plugin'
+import { appendPluginsArray, draftToMarkdown, markdownToDraft } from './../utils/PluginsUtils'
 import { getCurrentBlock, addNewLineWithoutStyle, getSelectionEntity, findLinkEntities, getEntityRange, getSelectionText } from '../utils/DraftJSUtil'
-
-// === Plugins === //
-import createMathjaxPlugin from '../plugins/draft-js-mathjax-plugin/index'
-import createEdmodoPlugin from '../plugins/draft-js-edmodo-plugin/index'
-import MarkdownEdmodoMathjax from '../plugins/markdown-edmodo-mathjax/index'
 
 // === Styles === //
 import 'bootstrap/dist/css/bootstrap.css'
@@ -31,25 +24,7 @@ import EDSLinkItem from './EDSLinkItem'
 import DraftjsBlockConstants from '../constants/DraftjsBlockConstants'
 import DraftjsCommandConstants from '../constants/DraftjsCommandConstants'
 import DraftjsEditorChangeTypeConstants from '../constants/DraftjsEditorChangeTypeConstants'
-
-
-const defaultToolbar = [
-  { label: 'H1', style: 'header-one' },
-  { label: 'H2', style: 'header-two' },
-  { label: 'H3', style: 'header-three' },
-  { label: 'H4', style: 'header-four' },
-  { label: 'H5', style: 'header-five' },
-  { label: 'H6', style: 'header-six' },
-  { label: 'Blockquote', style: 'blockquote' },
-  { label: 'UL', style: 'unordered-list-item' },
-  { label: 'OL', style: 'ordered-list-item' },
-  { label: 'Code Block', style: 'code-block' },
-  { label: 'Bold', style: 'BOLD' },
-  { label: 'Italic', style: 'ITALIC' },
-  { label: 'Underline', style: 'UNDERLINE' },
-  { label: 'StrikeThrough', style: 'STRIKETHROUGH' },
-  { label: 'AddLink', style: 'add-link' }
-]
+import { toolbarPositionValues, styleMap, defaultProps, propTypes } from './defaultConfig'
 
 const toggleBlockTypeArray = [
   DraftjsBlockConstants.ORDERED_LIST_ITEM,
@@ -65,54 +40,6 @@ const toggleBlockTypeArray = [
 ]
 const toggleInlineStyleArray = ['BOLD', 'ITALIC', 'UNDERLINE', 'STRIKETHROUGH']
 
-const mathjaxPlugin = createMathjaxPlugin()
-const edmodoPlugin = createEdmodoPlugin()
-const hashtagPlugin = createHashtagPlugin({
-  theme: {
-    hashtag: 'HashTag-item'
-  }
-})
-const plugins = [
-  mathjaxPlugin,
-  edmodoPlugin,
-  hashtagPlugin
-]
-
-const styleMap = {
-  'STRIKETHROUGH': {
-    textDecoration: 'line-through'
-  }
-}
-
-const options = {
-  preserveNewlines: true,
-  entityItems: {
-    INLINETEX: {
-      open: function (entity) {
-        if (!get(entity, 'data.teX', '')) return ''
-        return '[math]' + trim(entity.data.teX)
-      },
-
-      close: function (entity) {
-        if (!get(entity, 'data.teX', '')) return ''
-        return '[/math]'
-      }
-    }
-  },
-  remarkablePlugins: [MarkdownEdmodoMathjax],
-  blockEntities: {
-    katex_open: function (item) {
-      return {
-        type: 'INLINETEX',
-        mutability: 'IMMUTABLE',
-        data: {
-          teX: item.content,
-          displaystyle: false
-        }
-      }
-    }
-  }
-}
 
 class EDSRichTextInput extends Component {
   constructor(props) {
@@ -123,14 +50,11 @@ class EDSRichTextInput extends Component {
     this.handleAddLink = this.handleAddLink.bind(this)
     this.handleEditLink = this.handleEditLink.bind(this)
     this.onSearchChange = this.onSearchChange.bind(this)
-    this.blockRendererFn = this.blockRendererFn.bind(this)
     this.handlePastedText = this.handlePastedText.bind(this)
-    this.handleKeyCommand = this.handleKeyCommand.bind(this)
     this.handleRemoveLink = this.handleRemoveLink.bind(this)
     this.createEditorState = this.createEditorState.bind(this)
     this.toggleAddLinkModal = this.toggleAddLinkModal.bind(this)
     this.handleToolbarClick = this.handleToolbarClick.bind(this)
-    this.mapKeyToEditorCommand = this.mapKeyToEditorCommand.bind(this)
 
     const { value } = props
     const currentEditorState = this.createEditorState(value)
@@ -143,10 +67,6 @@ class EDSRichTextInput extends Component {
       currentEntity: getSelectionEntity(currentEditorState),
       mentionFilterValue: ''
     }
-
-    this.mentionPlugin = createMentionPlugin({
-      mentionPrefix: '@'
-    })
   }
 
   componentDidUpdate() {
@@ -162,11 +82,13 @@ class EDSRichTextInput extends Component {
       })
     }
   }
+
   createEditorState(value) {
     return isEmpty(value) ? EditorState.createEmpty() : EditorState.createWithContent(
-      convertFromRaw(markdownToDraft(value, options)),
+      convertFromRaw(markdownToDraft(value)),
     )
   }
+
   focus() {
     // Hacky: Wait to focus the editor so we don't lose selection.
     setTimeout(() => {
@@ -244,13 +166,10 @@ class EDSRichTextInput extends Component {
         return null
     }
   }
-  blockRendererFn(block) {
-    const nextBlockStyle = mathjaxPlugin.blockRendererFn(block)
-    return nextBlockStyle
-  }
+
   onChange(nextEditorState) {
     const { onChange } = this.props
-    const markdownValue = draftToMarkdown(convertToRaw(nextEditorState.getCurrentContent()), options)
+    const markdownValue = draftToMarkdown(nextEditorState)
     this.setState({
       markdownValue,
       currentEditorState: nextEditorState,
@@ -258,6 +177,7 @@ class EDSRichTextInput extends Component {
     })
     onChange && onChange(markdownValue)
   }
+
   handleRemoveLink() {
     const { currentEditorState, currentEntity } = this.state
     let selection = currentEditorState.getSelection()
@@ -279,40 +199,12 @@ class EDSRichTextInput extends Component {
     }
   }
 
-  handleKeyCommand(command, editorState) {
-    const nextState = edmodoPlugin.handleKeyCommand(command, editorState)
-    if (nextState === editorState) {
-      return RichUtils.handleKeyCommand(editorState, command)
-    } else {
-      this.onChange(nextState)
-      return 'handled'
-    }
-  }
   handleEditLink({ decoratedText: text, url }) {
     this.setState({
       isAddLinkModalOpen: true,
       addLinkText: text,
       addLinkUrl: url
     })
-  }
-  mapKeyToEditorCommand(e) {
-    const { currentEditorState } = this.state
-    let nextCommand = ''
-
-    nextCommand = edmodoPlugin.keyBindingFn(e, { getEditorState: () => currentEditorState })
-    if (nextCommand) {
-      return nextCommand
-    }
-    nextCommand = mathjaxPlugin.keyBindingFn(e, { getEditorState: () => currentEditorState })
-    if (nextCommand) {
-      return nextCommand
-    }
-    nextCommand = this.mentionPlugin.keyBindingFn(e, { getEditorState: () => currentEditorState })
-    if (nextCommand) {
-      return nextCommand
-    }
-
-    return nextCommand
   }
 
   handleAddLink(linkTitle, linkTarget) {
@@ -368,6 +260,7 @@ class EDSRichTextInput extends Component {
     }, this.focus)
     this.onChange(EditorState.push(newEditorState, contentState, 'insert-characters'))
   }
+
   handlePastedText(text, html, editorState) {
     const currentBlock = getCurrentBlock(editorState)
     const contentState = editorState.getCurrentContent()
@@ -396,8 +289,7 @@ class EDSRichTextInput extends Component {
 
   render() {
     const { isAddLinkModalOpen, addLinkText, addLinkUrl, currentEditorState: editorState, mentionFilterValue } = this.state
-    const { toolbarItems, mentions } = this.props
-    const { MentionSuggestions } = this.mentionPlugin
+    const { toolbarItems, mentions, toolbarPosition, showBorder } = this.props
     const hasFocus = editorState.getSelection().getHasFocus()
     const currentBlockType = RichUtils.getCurrentBlockType(editorState)
     const nextToolbarItems = toolbarItems.map(item => {
@@ -413,15 +305,25 @@ class EDSRichTextInput extends Component {
         disabled: currentBlockType === DraftjsBlockConstants.CODE_BLOCK && toggleInlineStyleArray.includes(style)
       }
     })
+    const isToolbarOnTop = toolbarPosition === toolbarPositionValues[0]
 
     const displayMentions = defaultSuggestionsFilter(mentionFilterValue, mentions)
+
+    // if enable mentions feature, push plugins
+    const nextPlugins = appendPluginsArray(pick(this.props, ['enableHashTag', 'enableMathjax', 'enableMentions']))
+    // 查找插件中 是否有mentionPlugin插件
+    const MentionSuggestions = get(find(nextPlugins, plugin => plugin.MentionSuggestions), 'MentionSuggestions')
     return (
-      <div className="DraftEditor">
-        <EDSRichTextInputToolbar
-          editorState={editorState}
-          toolbarItems={nextToolbarItems}
-          handleClick={this.handleToolbarClick}
-        />
+      <div className={classnames('DraftEditor', { 'DraftEditor-border': showBorder })}>
+        {
+          isToolbarOnTop && (
+            <EDSRichTextInputToolbar
+              editorState={editorState}
+              toolbarItems={nextToolbarItems}
+              handleClick={this.handleToolbarClick}
+            />
+          )
+        }
         <Editor
           ref={(el) => {
             this.editor = el
@@ -440,9 +342,7 @@ class EDSRichTextInput extends Component {
               }
             }
           ]}
-          plugins={[...plugins, this.mentionPlugin]}
-          handleKeyCommand={this.handleKeyCommand}
-          keyBindingFn={this.mapKeyToEditorCommand}
+          plugins={nextPlugins}
           handlePastedText={this.handlePastedText}
         />
 
@@ -451,6 +351,15 @@ class EDSRichTextInput extends Component {
           suggestions={displayMentions}
           onAddMention={this.onAddMention}
         />
+        {
+          !isToolbarOnTop && (
+            <EDSRichTextInputToolbar
+              editorState={editorState}
+              toolbarItems={nextToolbarItems}
+              handleClick={this.handleToolbarClick}
+            />
+          )
+        }
         <AddLinkModal
           defaultText={addLinkText}
           defaultUrl={addLinkUrl}
@@ -462,23 +371,9 @@ class EDSRichTextInput extends Component {
     )
   }
 }
-EDSRichTextInput.propTypes = {
-  className: PropTypes.string,
-  placeholder: PropTypes.string,
-  value: PropTypes.any.isRequired,
-  onChange: PropTypes.func.isRequired,
-  showBorder: PropTypes.bool,
-  customStyleMap: PropTypes.object,
-  toolbar: PropTypes.array
-}
 
-EDSRichTextInput.defaultProps = {
-  className: '',
-  toolbarItems: defaultToolbar,
-  placeholder: 'Tell a story...',
-  value: '',
-  onChange: noop,
-  showBorder: true,
-  customStyleMap: {}
-}
+EDSRichTextInput.propTypes = propTypes
+
+EDSRichTextInput.defaultProps = defaultProps
+
 export default EDSRichTextInput
