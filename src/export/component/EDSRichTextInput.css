@@ -1,6 +1,10 @@
 .DraftEditor {
   background-color: #fff;
-  padding: 14px 12px 50px 12px;
+  padding: 14px;
+}
+
+.DraftEditor-border {
+  border: 1px solid #eee;
 }
 
 .DraftEditor-editorContainer .public-DraftEditor-content {
