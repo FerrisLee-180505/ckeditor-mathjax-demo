@@ -58,7 +58,9 @@ const defaultProps = {
   // enable mathjax feature, Default false
   enableMathjax: false,
 
-  toolbarPosition: 'top'
+  toolbarPosition: 'top',
+
+  mentions: []
 }
 
 // 组件props上字段类型
@@ -84,7 +86,9 @@ const propTypes = {
 
   enableMathjax: PropTypes.bool,
 
-  toolbarPosition: PropTypes.oneOf(['top', 'bottom'])
+  toolbarPosition: PropTypes.oneOf(['top', 'bottom']),
+
+  mentions: PropTypes.array
 }
 
 export {

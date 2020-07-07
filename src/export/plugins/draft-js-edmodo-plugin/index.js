@@ -16,7 +16,7 @@ const createEdmodoPlugin = () => {
       const selection = editorState.getSelection()
       const currentBlockType = RichUtils.getCurrentBlockType(editorState)
 
-      let newEditorState
+      let newEditorState = editorState
       if (e.keyCode === 9) { // TAB
         if (currentBlockType === DraftjsBlockConstants.CODE_BLOCK) {
           const contentState = editorState.getCurrentContent()
@@ -68,7 +68,6 @@ const createEdmodoPlugin = () => {
         setEditorState(newEditorState)
         return 'handled'
       }
-      return 'not-handled'
     }
   }
 }

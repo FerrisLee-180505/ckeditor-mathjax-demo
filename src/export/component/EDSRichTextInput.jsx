@@ -346,11 +346,15 @@ class EDSRichTextInput extends Component {
           handlePastedText={this.handlePastedText}
         />
 
-        <MentionSuggestions
-          onSearchChange={this.onSearchChange}
-          suggestions={displayMentions}
-          onAddMention={this.onAddMention}
-        />
+        {
+          MentionSuggestions && (
+            <MentionSuggestions
+              onSearchChange={this.onSearchChange}
+              suggestions={displayMentions}
+              onAddMention={this.onAddMention}
+            />
+          )
+        }
         {
           !isToolbarOnTop && (
             <EDSRichTextInputToolbar

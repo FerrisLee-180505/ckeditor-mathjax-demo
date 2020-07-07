@@ -43,11 +43,11 @@ const EDSRichTextInputToolbar = ({ className, editorState, handleClick, toolbarI
   return (
     <div className={classnames('RichEditor-toolbar', className)} onMouseEnter={onMouseEnter}>
       {
-        toolbarItems.map(type => {
+        toolbarItems.map((type, index) => {
           if (isEmpty(type.children)) {
             return (
               <StyleButton
-                key={type.style}
+                key={`${type.style}-${index}`}
                 disabled={type.disabled}
                 active={type.style === blockType || currentStyle.has(type.style)}
                 label={type.label}
@@ -61,7 +61,7 @@ const EDSRichTextInputToolbar = ({ className, editorState, handleClick, toolbarI
           const classNameString = classnames('RichEditor-headerButton', { 'RichEditor-activeButton': isActive })
 
           return (
-            <UncontrolledDropdown key={type.style} style={{ display: 'inline-block' }}>
+            <UncontrolledDropdown key={`${type.style}-${index}`} style={{ display: 'inline-block' }}>
               <DropdownToggle tag="button" className={classNameString}>
                 {type.label}
               </DropdownToggle>
