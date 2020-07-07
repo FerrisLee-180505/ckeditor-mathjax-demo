@@ -11,6 +11,17 @@
   min-height: 100px;
 }
 
+.public-DraftEditorPlaceholder-root {
+  color: #9197a3;
+  position: absolute;
+  z-index: 1;
+  margin-left: 3px;
+}
+
+.DraftEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
+  display: none;
+}
+
 .RichEditor-styleButton {
   color: #999;
   cursor: pointer;

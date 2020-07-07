@@ -287,9 +287,42 @@ class EDSRichTextInput extends Component {
     })
   };
 
+  shouldHidePlaceholder = () => {
+    // If the user changes block type before entering any text,
+    // we hide the
+    const { currentEditorState } = this.state
+    const contentState = currentEditorState.getCurrentContent()
+    if (!contentState.hasText()) {
+      if (contentState.getBlockMap().first().getType() !== DraftjsBlockConstants.UNSTYLED) {
+        return true
+      }
+    }
+    return false
+  }
+
+  handlePastedText = (text, html, editorState) => {
+    const currentBlock = getCurrentBlock(editorState)
+    const contentState = editorState.getCurrentContent()
+    const selection = editorState.getSelection()
+    if (currentBlock.getType() === DraftjsBlockConstants.CODE_BLOCK) {
+      const newContentState = Modifier.replaceText(
+        contentState,
+        selection,
+        text
+      )
+      this.onChange(EditorState.push(
+        editorState,
+        newContentState,
+        DraftjsEditorChangeTypeConstants.INSERT_CHARACTERS
+      ))
+      return 'handled'
+    }
+    return 'not-handled'
+  }
+
   render() {
     const { isAddLinkModalOpen, addLinkText, addLinkUrl, currentEditorState: editorState, mentionFilterValue } = this.state
-    const { toolbarItems, mentions, toolbarPosition, showBorder } = this.props
+    const { toolbarItems, mentions, toolbarPosition, showBorder, placeholder } = this.props
     const hasFocus = editorState.getSelection().getHasFocus()
     const currentBlockType = RichUtils.getCurrentBlockType(editorState)
     const nextToolbarItems = toolbarItems.map(item => {
@@ -314,7 +347,7 @@ class EDSRichTextInput extends Component {
     // 查找插件中 是否有mentionPlugin插件
     const MentionSuggestions = get(find(nextPlugins, plugin => plugin.MentionSuggestions), 'MentionSuggestions')
     return (
-      <div className={classnames('DraftEditor', { 'DraftEditor-border': showBorder })}>
+      <div className={classnames('DraftEditor', { 'DraftEditor-border': showBorder, 'DraftEditor-hidePlaceholder': this.shouldHidePlaceholder() })}>
         {
           isToolbarOnTop && (
             <EDSRichTextInputToolbar
@@ -328,10 +361,12 @@ class EDSRichTextInput extends Component {
           ref={(el) => {
             this.editor = el
           }}
+          placeholder={placeholder}
           blockStyleFn={this.getBlockStyle}
           customStyleMap={styleMap}
           editorState={editorState}
           onChange={this.onChange}
+          handlePastedText={this.handlePastedText}
           decorators={[
             {
               strategy: findLinkEntities,
