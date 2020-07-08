@@ -29,6 +29,9 @@
   border-image: initial;
   margin-bottom: 0;
   color: #fff;
+  width: auto;
+  color: #000;
+  font-size: 20px;
 }
 
 #preview-panel {
@@ -42,9 +45,12 @@
 
 .kfEditorWrapper {
   height: 826px;
-  background: #545b62;
+  background: #6c757d;
 }
-
+.kfEditorWrapper .kf-editor-canvas-container{
+  font-size: 50px;
+}
 .kf-editor-input-record-display-area-container {
   display: none;
 }
+
