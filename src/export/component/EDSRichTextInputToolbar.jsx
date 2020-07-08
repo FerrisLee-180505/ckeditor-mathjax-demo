@@ -13,7 +13,7 @@ import classnames from 'classnames'
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 
 // === Utils === //
-import { isEmpty } from 'lodash'
+import isEmpty from 'lodash/isEmpty'
 
 import './EDSRichTextInputToolbar.css'
 

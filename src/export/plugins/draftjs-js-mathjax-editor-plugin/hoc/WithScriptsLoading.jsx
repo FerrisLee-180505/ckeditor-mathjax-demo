@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 // === Utils === //
-import { map } from 'lodash'
+import map from 'lodash/map'
 import { sequence, scriptPromise } from './../utils/promise-utils'
 
 function WithScriptsLoading(Embed, libArray = []) {

@@ -4,7 +4,10 @@ import { Modifier, EditorState, RichUtils, convertFromRaw } from 'draft-js'
 
 // === Utils === //
 import classnames from 'classnames'
-import { isEmpty, get, pick, find } from 'lodash'
+import get from 'lodash/get'
+import pick from 'lodash/pick'
+import find from 'lodash/find'
+import isEmpty from 'lodash/isEmpty'
 import { defaultSuggestionsFilter } from 'draft-js-mention-plugin'
 import { appendPluginsArray, draftToMarkdown, markdownToDraft } from './../utils/PluginsUtils'
 import { getCurrentBlock, addNewLineWithoutStyle, getSelectionEntity, findLinkEntities, getEntityRange, getSelectionText } from '../utils/DraftJSUtil'

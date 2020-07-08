@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { UncontrolledTooltip } from 'reactstrap'
 
 // === Utils === //
-import { noop } from 'lodash'
+import noop from 'lodash/noop'
 
 // === Styles === //
 import './EDSLinkItem.css'

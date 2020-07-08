@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 
 // === Utils === //
-import { noop } from 'lodash'
+import noop from 'lodash/noop'
 
 // 默认工具栏配置
 const defaultToolbar = [

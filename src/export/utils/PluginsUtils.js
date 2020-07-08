@@ -1,5 +1,6 @@
 // === Utils === //
-import { get, trim } from 'lodash'
+import get from 'lodash/get'
+import trim from 'lodash/trim'
 import { convertToRaw } from 'draft-js'
 import { draftToMarkdown as dtm, markdownToDraft as mtd } from 'markdown-draft-js'
 

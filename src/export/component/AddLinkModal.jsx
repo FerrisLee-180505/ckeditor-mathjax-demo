@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { Modal, ModalBody, ModalFooter, ModalHeader, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 
 // === Utils === //
-import { noop } from 'lodash'
+import noop from 'lodash/noop'
 
 
 class AddLinkModal extends Component {
