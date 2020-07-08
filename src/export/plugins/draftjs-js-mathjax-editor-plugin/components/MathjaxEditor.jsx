@@ -11,6 +11,7 @@ import './../styles/base.css'
 import './../styles/ui.css'
 import './../styles/ui.extension.css'
 import './../styles/scrollbar.css'
+import './../styles/icons.css'
 import './../styles/main.css'
 
 // === Hocs === //
@@ -23,6 +24,12 @@ require(`./../i18n/${language}/index.js`)
 
 // 为了翻遍kityformular里的库使用jquery，所以对window上的对象进行赋值
 window.jQuery = window.$ = $
+
+// require('./../lib/kitygraph.all.js')
+// require('./../lib/kity-formula-render.all.js')
+// require('./../lib/kity-formula-parser.all.js')
+// require('./../lib/kityformula-editor.all.js')
+
 class MathjaxEditor extends Component {
   constructor(props) {
     super(props)
