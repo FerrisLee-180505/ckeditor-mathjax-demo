@@ -13,6 +13,13 @@ function WithScriptsLoading(Embed, libArray = []) {
       }
     }
     componentDidMount() {
+      // 如果window.kf存在，则代表kityformular的库已载入，无需再次载入
+      if (window.kf) {
+        this.setState({
+          isLoaded: true
+        })
+        return
+      }
       sequence(map(libArray, lib => () => scriptPromise(lib))).then(() => {
         this.setState({
           isLoaded: true

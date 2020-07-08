@@ -84,7 +84,7 @@ class App extends React.Component {
     const { value } = this.state
     return (
       <div>
-        <Row style={{ margin: 0 }}>
+        <Row style={{ margin: 0, padding: 10 }}>
           <Col md={6}>
             <EDSRichTextInput
               toolbarItems={toolbarItems}
@@ -96,7 +96,6 @@ class App extends React.Component {
               enableMentions
               enableHashTag
               enableMathjax
-              toolbarPosition="bottom"
             />
           </Col>
           <Col md={6}>

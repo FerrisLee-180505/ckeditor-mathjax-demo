@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 // === Utils === //
-import { noop } from 'lodash'
+import noop from 'lodash/noop'
+import $ from 'jquery'
 
 // === Styles === //
 import './../styles/page.css'
@@ -12,12 +13,16 @@ import './../styles/ui.extension.css'
 import './../styles/scrollbar.css'
 import './../styles/main.css'
 
-// === I18n === //
-import './../i18n/en/index'
-
 // === Hocs === //
 import WithScriptsLoading from './../hoc/WithScriptsLoading'
 
+// === I18n === //
+//TODO: 目前依据浏览器语言自动使用展示语言。
+const language = navigator.language || navigator.userLanguage
+require(`./../i18n/${language}/index.js`)
+
+// 为了翻遍kityformular里的库使用jquery，所以对window上的对象进行赋值
+window.jQuery = window.$ = $
 class MathjaxEditor extends Component {
   constructor(props) {
     super(props)
@@ -28,6 +33,10 @@ class MathjaxEditor extends Component {
     this.loadMathJax = this.loadMathJax.bind(this)
   }
   componentDidMount() {
+    if (!window.kf || !window.kf.EditorFactory) {
+      console.error('Dependency loading failed')
+      return
+    }
     const { value } = this.props
     this.factory = window.kf.EditorFactory.create(this.instance, {
       render: {
@@ -87,15 +96,10 @@ MathjaxEditor.propTypes = {
   value: PropTypes.string,
 
   // onChage function callback
-  onChange: PropTypes.func.isRequired,
-
-  // displayed language
-  language: PropTypes.string
+  onChange: PropTypes.func.isRequired
 }
 
 MathjaxEditor.defaultProps = {
-
-  language: navigator.language || navigator.userLanguage,
 
   value: '',
 
