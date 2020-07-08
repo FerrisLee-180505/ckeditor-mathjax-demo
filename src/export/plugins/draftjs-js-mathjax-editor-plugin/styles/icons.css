@@ -1,444 +1,444 @@
 
 /* 按钮图标打入chunk中，进行展示*/
 .kf-editor-ui-yushe-btn .kf-editor-ui-button-icon{
-  background-image: url("./../assets/images/toolbar/btn.png") !important;
-  background-color: #fff !important;
+  background-image: url("./../assets/images/toolbar/btn.png");
 }
 .kf-editor-ui-matrix-btn .kf-editor-ui-button-icon{
-  background-image: url("./../assets/images/toolbar/matrix.png") !important;
-  background-color: #fff !important;
+  background-image: url("./../assets/images/toolbar/matrix.png");
 }
 .kf-editor-ui-other-group-btn .kf-editor-ui-button-icon{
-  background-image: url("./../assets/images/toolbar/other-group.png") !important;
-  background-color: #fff !important;
+  background-image: url("./../assets/images/toolbar/other-group.png");
 }
 .kf-editor-ui-chem-btn .kf-editor-ui-button-icon{
-  background-image: url("./../assets/images/toolbar/chem.png") !important;
-  background-color: #fff !important;
+  background-image: url("./../assets/images/toolbar/chem.png");
 }
 .kf-editor-ui-area-item-img{
-  background-image: url("./../assets/images/toolbar/char.png") !important;
+  background-image: url("./../assets/images/toolbar/char.png");
 }
 
 .underrightarrow .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/underrightarrow.png") !important;
+  background-image: url("./../assets/images/toolbar/other/underrightarrow.png");
 }
 .xrightarrow  .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/arrow/xrightarrow.png") !important;
+  background-image: url("./../assets/images/toolbar/arrow/xrightarrow.png");
 }
 .other .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other.png") !important;
+  background-image: url("./../assets/images/toolbar/other.png");
 }
 .overset .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/overset.png") !important;
+  background-image: url("./../assets/images/toolbar/other/overset.png");
 }
 .arcsin  .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/arcsin.png") !important;
+  background-image: url("./../assets/images/toolbar/other/arcsin.png");
 }
 .log .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/log.png") !important;
+  background-image: url("./../assets/images/toolbar/other/log.png");
 }
 .lim .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/lim.png") !important;
+  background-image: url("./../assets/images/toolbar/other/lim.png");
 }
 .products .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/products.png") !important;
+  background-image: url("./../assets/images/toolbar/other/products.png");
 }
 .underset .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/underset.png") !important;
+  background-image: url("./../assets/images/toolbar/other/underset.png");
 }
 .over-under-set .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/over-under-set.png") !important;
+  background-image: url("./../assets/images/toolbar/other/over-under-set.png");
 }
 .angle  .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/angle.png") !important;
+  background-image: url("./../assets/images/toolbar/other/angle.png");
 }
 .matrix22  .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/matrix22.png") !important;
+  background-image: url("./../assets/images/toolbar/other/matrix22.png");
 }
 .pmatrix22 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/pmatrix22.png") !important;
+  background-image: url("./../assets/images/toolbar/other/pmatrix22.png");
 }
 
 .bmatrix22 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/bmatrix22.png") !important;
+  background-image: url("./../assets/images/toolbar/other/bmatrix22.png");
 }
 .bmatrix22u .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/bmatrix22u.png") !important;
+  background-image: url("./../assets/images/toolbar/other/bmatrix22u.png");
 }
 .vmatrix22 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/vmatrix22.png") !important;
+  background-image: url("./../assets/images/toolbar/other/vmatrix22.png");
 }
 .vmatrix22u .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/vmatrix22u.png") !important;
+  background-image: url("./../assets/images/toolbar/other/vmatrix22u.png");
 }
 .matrix-add-row .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/matrix-add-row.png") !important;
+  background-image: url("./../assets/images/toolbar/other/matrix-add-row.png");
 }
 .matrix-add-col .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/matrix-add-col.png") !important;
+  background-image: url("./../assets/images/toolbar/other/matrix-add-col.png");
 }
 
 .matrix-add-col .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/matrix-add-col.png") !important;
+  background-image: url("./../assets/images/toolbar/other/matrix-add-col.png");
 }
 .matrix-del-row.kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/matrix-del-row.png") !important;
+  background-image: url("./../assets/images/toolbar/other/matrix-del-row.png");
 }
 .matrix-del-col .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/matrix-del-col.png") !important;
+  background-image: url("./../assets/images/toolbar/other/matrix-del-col.png");
 }
 .matrix-del-row .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/matrix-del-row.png") !important;
+  background-image: url("./../assets/images/toolbar/other/matrix-del-row.png");
 }
 
 .equations2 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/equations2.png") !important;
+  background-image: url("./../assets/images/toolbar/other/equations2.png");
 }
 .equations3 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/equations3.png") !important;
+  background-image: url("./../assets/images/toolbar/other/equations3.png");
 }
 .gathered_add .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/gathered_add.png") !important;
+  background-image: url("./../assets/images/toolbar/other/gathered_add.png");
 }
 .gathered_remove .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/gathered_remove.png") !important;
+  background-image: url("./../assets/images/toolbar/other/gathered_remove.png");
 }
 .overrightarrow .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/overrightarrow.png") !important;
+  background-image: url("./../assets/images/toolbar/other/overrightarrow.png");
 }
 
 .chemtext .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/chemtext.png") !important;
+  background-image: url("./../assets/images/toolbar/other/chemtext.png");
 }
 .hx-fh-1 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fh-1.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fh-1.png");
 }
 .hx-fh-2 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fh-2.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fh-2.png");
 }
 .hx-fh-3 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fh-3.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fh-3.png");
 }
 .hx-fh-4 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fh-4.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fh-4.png");
 }
 .hx-fh-5 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fh-5.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fh-5.png");
 }
 .hx-fh-6 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fh-6.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fh-6.png");
 }
 .hx-fh-7 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fh-7.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fh-7.png");
 }
 .hx-fh-8 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fh-8.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fh-8.png");
 }
 .hx-fh-9 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fh-9.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fh-9.png");
 }
 .hx-fh-10 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fh-10.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fh-10.png");
 }
 
 .hx-fh-xrightarrow .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fh-xrightarrow.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fh-xrightarrow.png");
 }
 .hx-fh-xlongequal .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fh-xlongequal.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fh-xlongequal.png");
 }
 .hx-fh-xrightleftharpoons .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fh-xrightleftharpoons.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fh-xrightleftharpoons.png");
 }
 .hx-fytj-1 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fytj-1.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fytj-1.png");
 }
 .hx-fytj-2 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fytj-2.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fytj-2.png");
 }
 .hx-fytj-3 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fytj-3.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fytj-3.png");
 }
 .hx-fytj-4 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fytj-4.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fytj-4.png");
 }
 .hx-fytj-5 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fytj-5.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fytj-5.png");
 }
 .hx-fytj-6 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fytj-6.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fytj-6.png");
 }
 .hx-fytj-7 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fytj-7.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fytj-7.png");
 }
 .hx-fytj-8 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fytj-8.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fytj-8.png");
 }
 .hx-fytj-9 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fytj-9.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fytj-9.png");
 }
 .hx-fytj-10 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fytj-10.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fytj-10.png");
 }
 .hx-fytj-11 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fytj-11.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fytj-11.png");
 }
 .hx-fytj-12 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fytj-12.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fytj-12.png");
 }
 .hx-fytj-13 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fytj-13.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fytj-13.png");
 }
 .hx-fytj-14 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-fytj-14.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-fytj-14.png");
 }
 .hx-cy-1 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-1.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-1.png");
 }
 .hx-cy-2 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-2.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-2.png");
 }
 .hx-cy-3 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-3.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-3.png");
 }
 .hx-cy-4 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-4.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-4.png");
 }
 .hx-cy-5 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-5.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-5.png");
 }
 .hx-cy-6 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-6.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-6.png");
 }
 .hx-cy-7 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-7.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-7.png");
 }
 .hx-cy-8 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-8.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-8.png");
 }
 .hx-cy-9 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-9.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-9.png");
 }
 .hx-cy-10 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-10.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-10.png");
 }
 .hx-cy-11 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-11.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-11.png");
 }
 .hx-cy-12 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-12.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-12.png");
 }
 .hx-cy-13 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-13.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-13.png");
 }
 .hx-cy-14 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-14.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-14.png");
 }
 .hx-cy-15 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-15.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-15.png");
 }
 .hx-cy-16 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-16.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-16.png");
 }
 .hx-cy-17 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-17.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-17.png");
 }
 .hx-cy-18 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-18.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-18.png");
 }
 .hx-cy-19 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-19.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-19.png");
 }
 .hx-cy-20 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-20.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-20.png");
 }
 .hx-cy-21 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-21.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-21.png");
 }
 .hx-cy-22 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-22.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-22.png");
 }
 .hx-cy-23 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hx-cy-23.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hx-cy-23.png");
 }
 
 .hx-dzs-1  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-1.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-1.png');
 }
 .hx-dzs-2  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-2.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-2.png');
 }
 .hx-dzs-3  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-3.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-3.png');
 }
 .hx-dzs-4  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-4.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-4.png');
 }
 .hx-dzs-5  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-5.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-5.png');
 }
 .hx-dzs-6  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-6.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-6.png');
 }
 .hx-dzs-7  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-7.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-7.png');
 }
 .hx-dzs-8  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-8.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-8.png');
 }
 .hx-dzs-9  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-9.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-9.png');
 }
 .hx-dzs-10  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-10.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-10.png');
 }
 .hx-dzs-11  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-11.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-11.png');
 }
 .hx-dzs-12  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-12.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-12.png');
 }
 .hx-dzs-13  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-13.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-13.png');
 }
 .hx-dzs-14  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-14.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-14.png');
 }
 .hx-dzs-15  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-15.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-15.png');
 }
 .hx-dzs-16  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-16.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-16.png');
 }
 .hx-dzs-17  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-17.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-17.png');
 }
 .hx-dzs-18  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-18.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-18.png');
 }
 .hx-dzs-19  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-19.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-19.png');
 }
 .hx-dzs-20  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-20.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-20.png');
 }
 .hx-dzs-21  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-21.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-21.png');
 }
 .hx-dzs-22  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-22.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-22.png');
 }
 .hx-dzs-23  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-23.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-23.png');
 }
 .hx-dzs-24  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-24.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-24.png');
 }
 .hx-dzs-25  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-25.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-25.png');
 }
 .hx-dzs-26  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-26.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-26.png');
 }
 .hx-dzs-27  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-27.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-27.png');
 }
 .hx-dzs-28  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-28.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-28.png');
 }
 .hx-dzs-29  .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-dzs-29.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-dzs-29.png');
 }
 
 
 .hx-jgs-1 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-1.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-1.png');
 }
 .hx-jgs-2 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-2.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-2.png');
 }
 .hx-jgs-3 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-3.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-3.png');
 }
 .hx-jgs-4 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-4.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-4.png');
 }
 .hx-jgs-5 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-5.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-5.png');
 }
 .hx-jgs-6 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-6.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-6.png');
 }
 .hx-jgs-7 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-7.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-7.png');
 }
 .hx-jgs-8 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-8.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-8.png');
 }
 .hx-jgs-9 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-9.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-9.png');
 }
 .hx-jgs-10 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-10.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-10.png');
 }
 .hx-jgs-11 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-11.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-11.png');
 }
 .hx-jgs-12 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-12.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-12.png');
 }
 .hx-jgs-13 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-13.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-13.png');
 }
 .hx-jgs-14 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-14.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-14.png');
 }
 .hx-jgs-15 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-jgs-15.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-jgs-15.png');
 }
 
 .hx-qt-1 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-qt-1.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-qt-1.png');
 }
 .hx-qt-2 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-qt-2.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-qt-2.png');
 }
 .hx-qt-3 .kf-editor-ui-item-image{
-  background-image: url('./../assets/images/toolbar/other/hx-qt-3.png') !important;
+  background-image: url('./../assets/images/toolbar/other/hx-qt-3.png');
 }
 
 .mean .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/mean.png") !important;
+  background-image: url("./../assets/images/toolbar/other/mean.png");
 }
 .hat .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/hat.png") !important;
+  background-image: url("./../assets/images/toolbar/other/hat.png");
 }
 .widehat .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/widehat.png") !important;
+  background-image: url("./../assets/images/toolbar/other/widehat.png");
 }
 .vector .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/vector.png") !important;
+  background-image: url("./../assets/images/toolbar/other/vector.png");
 }
 .cancel .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/cancel.png") !important;
+  background-image: url("./../assets/images/toolbar/other/cancel.png");
 }
 .doublearrow .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/doublearrow.png") !important;
+  background-image: url("./../assets/images/toolbar/other/doublearrow.png");
 }
 
 .frown .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/frown.png") !important;
+  background-image: url("./../assets/images/toolbar/other/frown.png");
 }
 .f1 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/f1.png") !important;
+  background-image: url("./../assets/images/toolbar/other/f1.png");
 }
 .f2 .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/f2.png") !important;
+  background-image: url("./../assets/images/toolbar/other/f2.png");
 }
 .latex .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/latex.png") !important;
+  background-image: url("./../assets/images/toolbar/other/latex.png");
 }
 .text .kf-editor-ui-item-image{
-  background-image: url("./../assets/images/toolbar/other/text.png") !important;
+  background-image: url("./../assets/images/toolbar/other/text.png");
+}
+
+.kf-editor-ui-box-item-val.char{
+  background-image: url("./../assets/images/toolbar/char.png");
 }

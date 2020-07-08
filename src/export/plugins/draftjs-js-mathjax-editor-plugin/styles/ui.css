@@ -310,20 +310,20 @@
 }
 
 .kf-editor-ui-moveup-button {
-  background: url("../images/btn.png") -304px 9px no-repeat;
+  background: url("./../assets/images/toolbar/btn.png") -304px 9px no-repeat;
 }
 
 .kf-editor-ui-movedown-button {
   border: 1px solid #D3D3D3;
   border-width: 1px 0;
-  background: url("../images/btn.png") -325px 9px no-repeat;
+  background: url("./../assets/images/toolbar/btn.png") -325px 9px no-repeat;
 }
 
 .kf-editor-ui-area-button {
   width: 100%;
   height: 50px;
   line-height: 26px;
-  background: url("../images/btn.png") -346px 0 no-repeat;
+  background: url("./../assets/images/toolbar/btn.png") -346px 0 no-repeat;
 }
 
 .kf-editor-ui-enabled .kf-editor-ui-area-button:HOVER {

@@ -6390,6 +6390,7 @@
           }
         },
         '\\xrightarrow{\\placeholder}': {
+          className:'abc',
           img: 'assets/images/toolbar/other/hx-fh-xrightarrow.png',
           pos: {
             x: 0,
@@ -8218,6 +8219,7 @@
         options: {
           button: {
             label: languageObject['分数'] + '<br/>',
+            className: 'yushe-btn',
             icon: {
               src: 'assets/images/toolbar/btn.png',
               x: 45,
@@ -8267,6 +8269,7 @@
         options: {
           button: {
             label: languageObject['上下标'] + '<br/>',
+            className: 'yushe-btn',
             icon: {
               src: 'assets/images/toolbar/btn.png',
               x: 82,
@@ -8340,6 +8343,7 @@
         options: {
           button: {
             label: languageObject['根式'] + '<br/>',
+            className: 'yushe-btn',
             icon: {
               src: 'assets/images/toolbar/btn.png',
               x: 119,
@@ -8389,6 +8393,7 @@
         options: {
           button: {
             label: languageObject['积分'] + '<br/>',
+            className: 'yushe-btn',
             icon: {
               src: 'assets/images/toolbar/btn.png',
               x: 156,
@@ -8435,6 +8440,7 @@
         options: {
           button: {
             label: languageObject['大型1<br/>运算符2'],
+            className: 'yushe-btn',
             icon: {
               src: 'assets/images/toolbar/btn.png',
               x: 193,
@@ -8503,6 +8509,7 @@
         options: {
           button: {
             label: languageObject['括号'] + '<br/>',
+            className: 'yushe-btn',
             icon: {
               src: 'assets/images/toolbar/btn.png',
               x: 230,
@@ -8545,6 +8552,7 @@
         options: {
           button: {
             label: languageObject['函数'] + '<br/>',
+            className: 'yushe-btn',
             icon: {
               src: 'assets/images/toolbar/btn.png',
               x: 267,
@@ -8676,6 +8684,7 @@
         options: {
           button: {
             label: languageObject['矩阵'] + '<br/>',
+            className: 'matrix-btn',
             icon: {
               src: 'assets/images/toolbar/matrix.png',
               x: 0,
@@ -8741,6 +8750,7 @@
         options: {
           button: {
             label: languageObject['方程组'] + '<br/>',
+            className: 'yushe-btn',
             icon: {
               src: 'assets/images/toolbar/btn.png',
               x: 390,
@@ -8790,6 +8800,7 @@
         options: {
           button: {
             label: languageObject['化学'] + '<br/>',
+            className:'chem-btn',
             icon: {
               src: 'assets/images/toolbar/chem.png',
               x: 0,
@@ -9219,6 +9230,7 @@
         options: {
           button: {
             label: languageObject['其它'] + '<br/>',
+            className:'other-group-btn',
             icon: {
               src: 'assets/images/toolbar/other-group.png',
               x: 4,
@@ -9325,9 +9337,11 @@
            * @author chenzuopeng 2015-07-01
            */
           // conf.item.img = otherImageSrc;
-          conf.item.img = data.img || otherImageSrc
+          var img = data.img || otherImageSrc
+          conf.item.img = img
           conf.item.pos = data.pos
           conf.item.size = data.size
+          conf.item.className = img.split('/').pop().split('.png').shift()
         })
       })();
       // --------------------------------------------- 初始化特殊字符区域
@@ -9723,7 +9737,7 @@
                 if (image && image.indexOf('/') !== 0) {
                   image = window.kf.base + image
                 }
-                newContent.push('<div class="' + PREFIX + 'area-item" data-value="' + currentContent.key + '" style="' + style + '"><div class="' + PREFIX + 'area-item-inner"><div class="' + PREFIX + 'area-item-img" style="background: url(' + image + ') no-repeat ' + -currentContent.pos.x + 'px ' + -currentContent.pos.y + 'px;"></div></div></div>')
+                newContent.push('<div class="' + PREFIX + 'area-item" data-value="' + currentContent.key + '" style="' + style + '"><div class="' + PREFIX + 'area-item-inner"><div class="' + PREFIX + 'area-item-img" style="background-repeat: no-repeat; background-position:' + -currentContent.pos.x + 'px ' + -currentContent.pos.y + 'px;"></div></div></div>')
               })
             })
             this.currentItemCount = count
@@ -10179,14 +10193,14 @@
            * TODO ITEM 生产图标节点
            */
           createBigContent: function () {
-            var doc = this.doc,
-              contentNode = $$.ele(doc, 'div', {
-                className: PREFIX + 'box-item-content'
-              }),
-              cls = PREFIX + 'box-item-val',
-              tmpContent = this.options.item,
-              tmpNode = null,
-              styleStr = getStyleByData(tmpContent)
+            var doc = this.doc;
+            var tmpContent = this.options.item;
+            var contentNode = $$.ele(doc, 'div', {
+                className:  `${PREFIX}box-item-content ${tmpContent.className}`
+              });
+            var cls = PREFIX + 'box-item-val';
+            var tmpNode = null;
+            var styleStr = getStyleByData(tmpContent)
             tmpNode = $$.ele(doc, 'div', {
               className: cls
             })
@@ -10205,13 +10219,12 @@
               tmpContent = this.options,
               tmpNode = null
             tmpNode = $$.ele(doc, 'div', {
-              className: cls
+              className: cls + ' '+ tmpContent.img.split('/').pop().split('.png').shift()
             })
             var image = tmpContent.img
             if (image && image.indexOf('/') !== 0) {
               image = window.kf.base + image
             }
-            tmpNode.style.background = 'url( ' + image + ' )'
             tmpNode.style.backgroundPosition = -tmpContent.pos.x + 'px ' + -tmpContent.pos.y + 'px'
             // 附加属性到项的根节点上
             this.element.setAttribute('data-value', tmpContent.key)
@@ -10266,8 +10279,7 @@
         if (image && image.indexOf('/') !== 0) {
           image = window.kf.base + image
         }
-        // background
-        var style = 'background: url( ' + image + ' ) no-repeat '
+        var style = 'background-repeat: no-repeat; background-position:'
         style += -data.pos.x + 'px '
         style += -data.pos.y + 'px;'
         // width height
@@ -10417,7 +10429,8 @@
             if (typeof this.options.icon === 'string') {
               iconNode.style.backgroundImage = 'url(' + this.options.icon + ') no-repeat'
             } else {
-              iconNode.style.background = getBackgroundStyle(this.options.icon)
+              iconNode.style.backgroundPosition = getBackgroundStyle(this.options.icon)
+              iconNode.style.backgroundRepeat = 'no-repeat'
             }
             if (this.options.iconSize.w) {
               iconNode.style.width = this.options.iconSize.w + 'px'
@@ -10468,7 +10481,7 @@
         if (image && image.indexOf('/') !== 0) {
           image = window.kf.base + image
         }
-        var style = 'url( ' + image + ' ) no-repeat '
+        var style = ' '
         style += -data.x + 'px '
         style += -data.y + 'px'
         return style
