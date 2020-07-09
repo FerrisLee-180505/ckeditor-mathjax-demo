@@ -14,9 +14,6 @@ import './../styles/scrollbar.css'
 import './../styles/icons.css'
 import './../styles/main.css'
 
-// === Hocs === //
-import WithScriptsLoading from './../hoc/WithScriptsLoading'
-
 // === I18n === //
 //TODO: 目前依据浏览器语言自动使用展示语言。
 const language = navigator.language || navigator.userLanguage
@@ -25,10 +22,12 @@ require(`./../i18n/${language}/index.js`)
 // 为了翻遍kityformular里的库使用jquery，所以对window上的对象进行赋值
 window.jQuery = window.$ = $
 
-// require('./../lib/kitygraph.all.js')
-// require('./../lib/kity-formula-render.all.js')
-// require('./../lib/kity-formula-parser.all.js')
-// require('./../lib/kityformula-editor.all.js')
+// === Libs === //
+require('../lib/kitygraph.all.js')
+require('../lib/kity-formula-render.all.js')
+require('../lib/kity-formula-parser.all.js')
+require('../lib/kityformula-editor.all.js')
+
 
 class MathjaxEditor extends Component {
   constructor(props) {
@@ -97,7 +96,6 @@ class MathjaxEditor extends Component {
   }
 }
 
-
 MathjaxEditor.propTypes = {
   // teX value
   value: PropTypes.string,
@@ -113,11 +111,4 @@ MathjaxEditor.defaultProps = {
   onChange: noop
 }
 
-
-
-export default WithScriptsLoading(MathjaxEditor, [
-  '/cdn/kitygraph.all.js',
-  '/cdn/kity-formula-render.all.js',
-  '/cdn/kity-formula-parser.all.js',
-  '/cdn/kityformula-editor.all.js'
-])
+export default MathjaxEditor
