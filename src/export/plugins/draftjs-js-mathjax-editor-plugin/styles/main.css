@@ -44,12 +44,14 @@
 }
 
 .kfEditorWrapper {
-  height: 826px;
+  height: 820px;
   background: #6c757d;
 }
+
 .kfEditorWrapper .kf-editor-canvas-container{
   font-size: 50px;
 }
+
 .kf-editor-input-record-display-area-container {
   display: none;
 }
