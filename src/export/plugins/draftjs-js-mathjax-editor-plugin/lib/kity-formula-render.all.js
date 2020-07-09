@@ -4733,7 +4733,7 @@ _p[43] = {
         return {
             meta: {
                 fontFamily: "KF AMS BB",
-                src: "KF_AMS_BB.woff"
+                src: "KF_AMS_BB.woff?serviceName=learningcar"
             }
         };
     }
@@ -4748,7 +4748,7 @@ _p[44] = {
         return {
             meta: {
                 fontFamily: "KF AMS CAL",
-                src: "KF_AMS_CAL.woff"
+                src: "KF_AMS_CAL.woff?serviceName=learningcar"
             }
         };
     }
@@ -4763,7 +4763,7 @@ _p[45] = {
         return {
             meta: {
                 fontFamily: "KF AMS FRAK",
-                src: "KF_AMS_FRAK.woff"
+                src: "KF_AMS_FRAK.woff?serviceName=learningcar"
             }
         };
     }
@@ -4778,7 +4778,7 @@ _p[46] = {
         return {
             meta: {
                 fontFamily: "KF AMS MAIN",
-                src: "KF_AMS_MAIN.woff"
+                src: "KF_AMS_MAIN.woff?serviceName=learningcar"
             },
             map: {
                 // char
@@ -5215,7 +5215,7 @@ _p[47] = {
         return {
             meta: {
                 fontFamily: "KF AMS ROMAN",
-                src: "KF_AMS_ROMAN.woff"
+                src: "KF_AMS_ROMAN.woff?serviceName=learningcar"
             }
         };
     }
@@ -7067,7 +7067,7 @@ _p[76] = {
      */
         function init(options) {
             options = kity.Utils.extend({}, RES_CONF, options);
-            if (!/^(https?:)?\/\//.test(options.path)) {
+            if (!/^(http(s)?:)?\/\//.test(options.path)) {
                 options.path = getFullPath(options.path);
             }
             new FontInstall(document, options.path).mount(complete);

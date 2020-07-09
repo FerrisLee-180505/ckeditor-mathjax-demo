@@ -49,7 +49,7 @@ class MathjaxEditor extends Component {
         fontsize: 40
       },
       resource: {
-        path: 'resource/'
+        path: 'http://gcdncs.101.com/v0.1/static/learningcar/CDN/lib/kityformula/dialogs/resource/'
       }
     })
     const that = this
