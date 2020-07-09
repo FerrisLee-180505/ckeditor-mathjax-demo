@@ -6,5 +6,7 @@ module.exports = {
   css: {
     extract: false
   },
+  // 图片小于200k，都打包如chunk
+  inlineLimit: 204800,
   showDevEntry: false
 }
