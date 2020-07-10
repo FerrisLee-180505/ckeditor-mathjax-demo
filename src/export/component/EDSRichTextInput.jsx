@@ -381,7 +381,6 @@ class EDSRichTextInput extends Component {
             }
           ]}
           plugins={nextPlugins}
-          handlePastedText={this.handlePastedText}
         />
 
         {

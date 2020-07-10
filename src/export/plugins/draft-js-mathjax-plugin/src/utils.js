@@ -26,32 +26,6 @@ export const myKeyBindingFn = getEditorState => (e) => {
     }
     return 'insert-inlinetex'
   }
-  // if (e.key === '*') {
-  //   return 'test'
-  // }
-  // gestion du cursor au cas où il est situé près d'une formule
-  if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-    const d = e.key === 'ArrowRight' ? 'r' : 'l'
-    const s = getEditorState().getSelection()
-    const c = getEditorState().getCurrentContent()
-    if (!s.isCollapsed()) { return undefined }
-    const offset = s.getStartOffset()
-    const blockKey = s.getStartKey()
-    const cb = c.getBlockForKey(blockKey)
-    if (cb.getLength() === offset && d === 'r') {
-      const b = c.getBlockAfter(blockKey)
-      if (b && b.getType() === 'atomic' && b.getData().get('mathjax')) { return `update-texblock-${d}-${b.getKey()}` }
-    }
-    if (offset === 0 && d === 'l') {
-      const b = c.getBlockBefore(blockKey)
-      if (b && b.getType() === 'atomic' && b.getData().get('mathjax')) { return `update-texblock-${d}-${b.getKey()}` }
-    }
-    const ek = cb.getEntityAt(offset - (e.key === 'ArrowLeft' ? 1 : 0))
-    if (ek && c.getEntity(ek).getType() === 'INLINETEX') {
-      return `update-inlinetex-${d}-${ek}`
-    }
-  }
-
   return getDefaultKeyBinding(e)
 }
 
@@ -73,6 +47,6 @@ export function changeDecorator(editorState, decorator) {
     allowUndo: true,
     currentContent: editorState.getCurrentContent(),
     decorator,
-    selection: editorState.getSelection(),
+    selection: editorState.getSelection()
   })
 }
