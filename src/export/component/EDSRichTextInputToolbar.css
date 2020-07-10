@@ -15,4 +15,9 @@
 .RichEditor-disabledButton {
   color: #ccc;
   cursor: no-drop;
+  background-color: #fff;
+}
+
+.RichEditor-disabledButton>svg>path {
+  fill: #ccc;
 }

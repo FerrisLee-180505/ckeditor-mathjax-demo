@@ -10,6 +10,7 @@ import { mentions, hashtag } from './datas'
 
 // === Icons === //
 import BoldIcon from './export/icons/BoldIcon'
+import LinkIcon from './export/icons/LinkIcon'
 import SplitIcon from './export/icons/SplitIcon'
 import CodeBlockIcon from './export/icons/CodeBlockIcon'
 import HeaderIcon from './export/icons/HeaderIcon'
@@ -19,38 +20,13 @@ import UnderLineIcon from './export/icons/UnderLineIcon'
 import UnorderedListIcon from './export/icons/UnorderedListIcon'
 import StrikeThroughIcon from './export/icons/StrikeThroughIcon'
 
-
+// === Constants === //
+import DraftjsCommandConstants from './export/constants/DraftjsCommandConstants'
 
 // === Styles === //
 import './styles.css'
 
-
-const initData = `# Fibonacci Sequence
-In mathematics, the **Fibonacci numbers**, commonly denoted Fn, form a sequence, called the **Fibonacci sequence**.
-
-this \\*\\*not markdown\\*\\* and \\*also not markdown\\*
-
-This is a ruby implementation:
-\`\`\`
-def fib(n)
-  first_num, second_num = [0, 1]
-  (n - 1).times do
-    first_num, second_num = second_num, first_num + second_num
-  end
-  # just pring the numbers
-  puts first_num
-end
-\`\`\`
-If you want to check all available implementations, please go to [my github](https://nasa.gov)
-
-Things to pay close attention:
-- The fibonnaci sequence starts in 0
-- 1 is the only number in the sequence that repeats itself
-- the reason for that is that 0 + 1 = 1
-    - an indented item
-
-For more info on the fibonacci sequence, please check:
-https://en.wikipedia.org/wiki/Fibonacci_number`
+const initData = ' [math]x=\\frac {-b\\pm \\sqrt {{b}^{2}-4ac}} {2a} [/math] [math]\\left ( {x+a} \\right )^{2}=\\sum \\limits^{n}_{k=0} {\\left ( {^{n}_{k}} \\right ){x}^{k}{a}^{n-k}} [/math] '
 
 const toolbarItems = [
   { label: <HeaderIcon />, style: 'header-one' },
@@ -63,7 +39,9 @@ const toolbarItems = [
   { label: <BoldIcon />, style: 'BOLD' },
   { label: <ItalicIcon />, style: 'ITALIC' },
   { label: <UnderLineIcon />, style: 'UNDERLINE' },
-  { label: <StrikeThroughIcon />, style: 'STRIKETHROUGH' }
+  { label: <StrikeThroughIcon />, style: 'STRIKETHROUGH' },
+  { label: <SplitIcon />, style: '' },
+  { label: <LinkIcon />, style: DraftjsCommandConstants.ADD_LINK }
 ]
 
 class App extends React.Component {
@@ -76,7 +54,6 @@ class App extends React.Component {
   }
 
   onChange(value) {
-    console.log('value=', value)
     this.setState({ value })
   }
 
@@ -98,13 +75,8 @@ class App extends React.Component {
               enableMathjax
             />
           </Col>
-          <Col md={6}>
-            <Markdown source={value} style={{ padding: 14 }} className="eds-rich-text-renderer" />
-          </Col>
-        </Row>
-        <Row style={{ margin: 0 }}>
-          <Col md={12} style={{ backgroundColor: 'white', borderRadius: '4px', marginTop: '1rem', whiteSpace: 'pre-line', padding: '4px' }}>
-            {value}
+          <Col md={6} style={{ backgroundColor: 'white', borderRadius: '4px', marginTop: '1rem', whiteSpace: 'pre-line', padding: '4px' }}>
+            {`[${value}]`}
           </Col>
         </Row>
       </div>
