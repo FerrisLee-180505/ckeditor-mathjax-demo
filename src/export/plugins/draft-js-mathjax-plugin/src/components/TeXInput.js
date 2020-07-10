@@ -51,7 +51,7 @@ class TeXInput extends React.Component {
     const {
       onChange,
       caretPosFn,
-      teX
+      teX = ''
     } = props
 
     const pos = caretPosFn()
@@ -126,8 +126,9 @@ class TeXInput extends React.Component {
   }
 
   onCancel() {
+    const { entityKey } = this.props
     const { teX } = this.state
-    this.props.onChange({ teX })
+    this.props.onChange({ teX, entityKey })
     this.onBlur()
   }
 
