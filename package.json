@@ -1,7 +1,7 @@
 {
-  "name": "ckeditor-mathjax-demo",
+  "name": "draftjs-mathjax-component",
   "version": "1.0.0",
-  "main": "dist/ckeditor-mathjax-demo.common",
+  "main": "dist/draftjs-mathjax-component.common",
   "files": [
     "dist/**/*.*"
   ],
@@ -29,7 +29,6 @@
     ]
   },
   "dependencies": {
-    "@gem-mine/immutable": "^1.0.0",
     "@gem-mine/intl": "^2.0.5",
     "@gem-mine/request": "^1.1.4",
     "bootstrap": "^4.5.0",
