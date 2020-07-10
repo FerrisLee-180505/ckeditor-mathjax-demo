@@ -27,7 +27,7 @@ export default class App extends React.Component {
           style: 'header-two'
         },
         {
-          label: <p>Regular Text</p>
+          label: <p>Regular Text</p>,
           style: 'unstyled'
         },
       ]},
@@ -42,12 +42,15 @@ export default class App extends React.Component {
       { label: <UnderLineIcon />, style: 'UNDERLINE' },
       { label: <StrikeThroughIcon />, style: 'STRIKETHROUGH' }
     ]
-    return <EDSRichTextInput
-      toolbarItems={toolbarItems}
-      value={value}
-      showBorder
-      onChange={this.onChange}
-    />
+    return <div>
+      <p>由于文档结构自带样式（theme-simple.css）会影响组件内样式，所以此处样式会出现变形。install使用时，并无影响</p>
+      <EDSRichTextInput
+        toolbarItems={toolbarItems}
+        value={value}
+        showBorder
+        onChange={this.onChange}
+      />
+    </div>
   }
 }
 </script>
