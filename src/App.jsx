@@ -2,7 +2,6 @@
 import { Row, Col } from 'reactstrap'
 
 import React from 'react'
-import Markdown from 'react-markdown'
 import EDSRichTextInput from './export'
 
 // === Datas === //
