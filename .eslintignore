@@ -1,3 +1,4 @@
 /dist
 /node_modules
 /public
+src/export/plugins/draftjs-js-mathjax-editor-plugin/lib/*.js
