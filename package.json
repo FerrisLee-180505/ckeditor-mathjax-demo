@@ -16,9 +16,7 @@
     "test:unit": "gms test:unit"
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "hooks": {}
   },
   "lint-staged": {
     "src/**/*.{css,less,sass,scss}": [
@@ -51,11 +49,11 @@
   "devDependencies": {
     "reactstrap": "^6.2.0",
     "@gem-mine/babel-preset-app": "^2.4.1",
-    "@gem-mine/cli-plugin-doc": "^2.4.3",
+    "@gem-mine/cli-plugin-doc": "3.0.1",
     "@gem-mine/cli-plugin-eslint": "^2.9.0",
     "@gem-mine/cli-plugin-jest": "^1.2.1",
     "@gem-mine/eslint-config-recommend": "^2.5.0",
-    "@gem-mine/script": "^2.7.2",
+    "@gem-mine/script": "2.12.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^5.12.0",
