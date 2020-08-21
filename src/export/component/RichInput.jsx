@@ -31,7 +31,7 @@ class RichInput extends Component {
       ...config
     }
     if (useKityFormular) {
-      CKEditor.editorUrl = 'http://gcdncs.101.com/v0.1/static/dist_learningobjectives_editor/base-cdn/ckeditor4/ckeditor.js'
+      CKEditor.editorUrl = '/lib/ckeditor.js'
     }
     return (
       <CKEditor
