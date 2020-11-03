@@ -4,12 +4,13 @@
 import trim from 'lodash/trim'
 
 const markdownEdmodoMathjax = (md, options) => {
-  const starter = '[math]'
-  const ender = '[/math]'
+  const starter = '$'
+  const ender = '$'
 
   const parseInlineKatex = (state, silent) => {
     const { src, pos, posMax } = state
-    if (src.charAt(pos) !== '[') return false
+    const firstChar = starter.slice(0, 1)
+    if (src.charAt(pos) !== firstChar) return false
     try {
       let pointer = pos
       // 解析出语法中的[math]开头，并记录位置到matchStart字段

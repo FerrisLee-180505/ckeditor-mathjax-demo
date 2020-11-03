@@ -27,12 +27,12 @@ const options = {
     INLINETEX: {
       open: function (entity) {
         if (!get(entity, 'data.teX', '')) return ''
-        return '[math]' + trim(entity.data.teX)
+        return '$' + trim(entity.data.teX)
       },
 
       close: function (entity) {
         if (!get(entity, 'data.teX', '')) return ''
-        return '[/math]'
+        return '$'
       }
     }
   },
