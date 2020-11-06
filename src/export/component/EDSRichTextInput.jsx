@@ -9,7 +9,7 @@ import pick from 'lodash/pick'
 import find from 'lodash/find'
 import isEmpty from 'lodash/isEmpty'
 import { defaultSuggestionsFilter } from 'draft-js-mention-plugin'
-import { appendPluginsArray, draftToMarkdown, markdownToDraft } from './../utils/PluginsUtils'
+import { appendPluginsArray, draftToMarkdown, markdownToDraft, mathjaxPlugin } from './../utils/PluginsUtils'
 import { getCurrentBlock, addNewLineWithoutStyle, getSelectionEntity, findLinkEntities, getEntityRange, getSelectionText } from '../utils/DraftJSUtil'
 
 // === Styles === //
@@ -152,6 +152,9 @@ class EDSRichTextInput extends Component {
         currentSelectText = getSelectionText(currentEditorState)
       }
       this.handleEditLink({ decoratedText: currentSelectText, url })
+    } else if (blockType === DraftjsCommandConstants.INSERT_INLINETEX) {
+      // 如果点击的是 Fx 按钮，则呼起 mathjax 组件中的模态框。
+      mathjaxPlugin.handleKeyCommand(blockType)
     }
 
     // Focus on input again after click on toobar
@@ -325,7 +328,7 @@ class EDSRichTextInput extends Component {
 
   render() {
     const { isAddLinkModalOpen, addLinkText, addLinkUrl, currentEditorState: editorState, mentionFilterValue } = this.state
-    const { toolbarItems, mentions, toolbarPosition, showBorder, placeholder } = this.props
+    const { toolbarItems, mentions, toolbarPosition, showBorder, placeholder, enableMathjax } = this.props
     const hasFocus = editorState.getSelection().getHasFocus()
     const currentBlockType = RichUtils.getCurrentBlockType(editorState)
     const nextToolbarItems = toolbarItems.map(item => {
@@ -344,6 +347,10 @@ class EDSRichTextInput extends Component {
     const isToolbarOnTop = toolbarPosition === toolbarPositionValues[0]
 
     const displayMentions = defaultSuggestionsFilter(mentionFilterValue, mentions)
+
+    if (enableMathjax) {
+      nextToolbarItems.push({ label: DraftjsCommandConstants.Fx, style: 'insert-inlinetex' })
+    }
 
     // if enable mentions feature, push plugins
     const nextPlugins = appendPluginsArray(pick(this.props, ['enableHashTag', 'enableMathjax', 'enableMentions']))

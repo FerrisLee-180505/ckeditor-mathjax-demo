@@ -58,7 +58,7 @@ function appendPluginsArray(config) {
 
   const { enableMentions, enableHashTag, enableMathjax } = config
 
-  const plugins = []
+  const plugins = [edmodoPlugin]
 
   if (enableMentions) {
     plugins.push(mentionPlugin)
@@ -71,7 +71,6 @@ function appendPluginsArray(config) {
   if (enableMathjax) {
     plugins.push(mathjaxPlugin)
   }
-  plugins.push(edmodoPlugin)
 
   return plugins
 }
@@ -95,5 +94,8 @@ function markdownToDraft(markdownText) {
 export {
   appendPluginsArray,
   draftToMarkdown,
-  markdownToDraft
+  markdownToDraft,
+  mathjaxPlugin,
+  edmodoPlugin,
+  hashtagPlugin
 }
