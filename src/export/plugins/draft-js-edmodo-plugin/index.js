@@ -68,6 +68,7 @@ const createEdmodoPlugin = () => {
         setEditorState(newEditorState)
         return 'handled'
       }
+      return 'not-handled'
     }
   }
 }

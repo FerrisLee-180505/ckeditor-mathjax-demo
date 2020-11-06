@@ -6,7 +6,6 @@ import noop from 'lodash/noop'
 import $ from 'jquery'
 
 // === Styles === //
-import './../styles/page.css'
 import './../styles/base.css'
 import './../styles/ui.css'
 import './../styles/ui.extension.css'
