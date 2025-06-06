@@ -53,7 +53,7 @@
 		"@gem-mine/cli-plugin-eslint": "^2.9.0",
 		"@gem-mine/cli-plugin-jest": "^1.2.1",
 		"@gem-mine/eslint-config-recommend": "^2.5.0",
-		"@gem-mine/script": "^2.7.2",
+		"@gem-mine/script": "^3.4.9",
 		"enzyme": "^3.11.0",
 		"enzyme-adapter-react-16": "^1.15.2",
 		"eslint": "^5.12.0",
